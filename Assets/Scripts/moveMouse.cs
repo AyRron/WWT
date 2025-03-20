@@ -7,13 +7,6 @@ public class move : MonoBehaviour
     // access to nav mesh Agent (floor)
     [SerializeField] private NavMeshAgent _agent = null;
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
