@@ -116,7 +116,6 @@ public class TankSelectionManager : MonoBehaviour
 
     private void TriggerSelectionIndicator(GameObject tank, bool isVisible)
     {
-        Debug.Log(tank);
         tank.transform.GetChild(1).gameObject.SetActive(isVisible);
     }
 }
