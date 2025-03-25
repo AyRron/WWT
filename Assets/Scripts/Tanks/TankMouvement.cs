@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.AI;
+using TMPro;
 
 public class TankMovement : MonoBehaviour
 {
@@ -9,6 +10,10 @@ public class TankMovement : MonoBehaviour
 
     public LayerMask ground;
 
+    private void Start()
+    {
+        _agent.updateRotation = true;
+    }
 
     // Update is called once per frame
     void Update()
@@ -25,4 +30,6 @@ public class TankMovement : MonoBehaviour
         }
 
     }
+
+    
 }
