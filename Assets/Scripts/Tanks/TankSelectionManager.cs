@@ -52,20 +52,20 @@ public class TankSelectionManager : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(1) && tanksSelected.Count > 0)
-        {
-            float maxDistance = Mathf.Infinity;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+        //if (Input.GetMouseButtonDown(1) && tanksSelected.Count > 0)
+        //{
+        //    float maxDistance = Mathf.Infinity;
+        //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //    RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, maxDistance, ground))
-            {
-                groundMarker.transform.position = hit.point;
+        //    if (Physics.Raycast(ray, out hit, maxDistance, ground))
+        //    {
+        //        groundMarker.transform.position = hit.point;
 
-                groundMarker.SetActive(false);
-                groundMarker.SetActive(true);
-            }
-        }
+        //        groundMarker.SetActive(false);
+        //        groundMarker.SetActive(true);
+        //    }
+        //}
     }
 
     private void MultiSelect(GameObject tank)
@@ -116,6 +116,7 @@ public class TankSelectionManager : MonoBehaviour
 
     private void TriggerSelectionIndicator(GameObject tank, bool isVisible)
     {
+        Debug.Log(tank);
         tank.transform.GetChild(1).gameObject.SetActive(isVisible);
     }
 }
