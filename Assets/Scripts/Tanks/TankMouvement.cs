@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.AI;
@@ -22,33 +23,22 @@ public class TankMovement : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
 
-            float maxDistance = 100f;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, maxDistance, ground)){
-
-            }
-
-            if (!EventSystem.current.IsPointerOverGameObject())
-
-            {
-
                 float maxDistance = 100f;
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
-                if (Physics.Raycast(ray, out hit, maxDistance, ground)){
-
-                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                    RaycastHit hit;
-                    if (Physics.Raycast(ray, out hit))
-                    {
-                        _agent.SetDestination(hit.point);
-                    }
-                }
-
 
                 
-            }
+               
+                if (Physics.Raycast(ray, out hit, maxDistance, ground)){
+                    Debug.Log(hit.collider.name);
+                    
+                    
+                    _agent.SetDestination(hit.point);
+                    
+                    
+                
+                }
+                
             
         }
 
