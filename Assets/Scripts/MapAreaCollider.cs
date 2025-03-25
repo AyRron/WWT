@@ -9,6 +9,7 @@ public class MapAreaCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
+        Debug.Log("Something has trigger the area");
         if (collider.TryGetComponent<PlayerArea>(out PlayerArea playerArea))
         {
             Debug.Log("Player has enter the area");
