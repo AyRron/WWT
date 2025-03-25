@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 
 public class move : MonoBehaviour
 {
@@ -12,12 +13,16 @@ public class move : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+            if (!EventSystem.current.IsPointerOverGameObject())
             {
-                _agent.SetDestination(hit.point);
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit))
+                {
+                    _agent.SetDestination(hit.point);
+                }
             }
+            
         }
 
     }
