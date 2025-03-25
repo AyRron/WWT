@@ -69,7 +69,7 @@ public class MapArea : MonoBehaviour
                 }
                 this.propgress += listePlayerAreaInside.Count * progressSpead * Time.deltaTime;
 
-                Debug.Log("Player count Inside :" + listePlayerAreaInside.Count + ", progress :" + propgress);
+                //Debug.Log("Player count Inside :" + listePlayerAreaInside.Count + ", progress :" + propgress);
 
                 if(this.propgress >= this.timeForCapture)
                 {
