@@ -13,6 +13,12 @@ public class MapArea : MonoBehaviour
         Captured
     }
 
+    public enum CurrentAttacker
+    {
+        Allies,
+        Ennemies
+    }
+
     // Gérer l'évenement de capture de zone
     // TODO : Utiliser l'event pour gérer l'affichage
     public event EventHandler OnCaptured;
@@ -24,11 +30,21 @@ public class MapArea : MonoBehaviour
     private float progressSpead = 1f;
     private float timeForCapture = 2f;
 
+    // score
+    private float scoreArea = 0f;
+    private float speedScore = 1.5f;
+
     // State
     private State state;
 
+    // Area attackers
+    private CurrentAttacker currentAttacker;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    // GameManager
+    private GameManager gameManager;
+
+
+    // Awake is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
         this.mapAreaColliderListe = new List<MapAreaCollider>();
@@ -45,6 +61,9 @@ public class MapArea : MonoBehaviour
         }
         this.state = State.Neutral;
 
+        // Invoque la méthode IncreaseScore toute les secondes
+        InvokeRepeating(nameof(IncreaseScore), 1f, 1f);
+
     }
 
     // Update is called once per frame
@@ -55,19 +74,24 @@ public class MapArea : MonoBehaviour
         {
             // Si la zone n'est pas capturé
             case State.Neutral:
-                List<PlayerArea> listePlayerAreaInside = new List<PlayerArea>();
+                List<Tank> listeTankAreaInside = new List<Tank>();
 
                 foreach (MapAreaCollider mapAreaCollider in mapAreaColliderListe)
                 {
-                    foreach (PlayerArea playerInsideArea in mapAreaCollider.GetPlayerList())
+                    foreach (Tank tankInsideArea in mapAreaCollider.GetPlayerList())
                     {
-                        if (!listePlayerAreaInside.Contains(playerInsideArea))
+                        if (!listeTankAreaInside.Contains(tankInsideArea))
                         {
-                            listePlayerAreaInside.Add(playerInsideArea);
+                            if (gameManager.GetTanksAllies().Contains(tankInsideArea))
+                            {
+                                // Tank allié dans la zone
+                            }
+                            listeTankAreaInside.Add(tankInsideArea);
+                            // animation de la zone à gérer ici
                         }
                     }
                 }
-                this.propgress += listePlayerAreaInside.Count * progressSpead * Time.deltaTime;
+                this.propgress += listeTankAreaInside.Count * progressSpead * Time.deltaTime;
 
                 //Debug.Log("Player count Inside :" + listePlayerAreaInside.Count + ", progress :" + propgress);
 
@@ -84,9 +108,14 @@ public class MapArea : MonoBehaviour
 
                 break;
         }
+    }
 
-        
-
-        
+    private void IncreaseScore()
+    {
+        if(this.state == State.Captured)
+        {
+            this.scoreArea += speedScore;
+            Debug.Log("Score de la zone :" + scoreArea);
+        }
     }
 }

@@ -5,12 +5,12 @@ using System.Collections.Generic;
 public class MapAreaCollider : MonoBehaviour
 {
 
-    private List<PlayerArea> playerAreaList = new List<PlayerArea>();
+    private List<Tank> playerAreaList = new List<Tank>();
 
     private void OnTriggerEnter(Collider collider)
     {
         Debug.Log("Something has trigger the area");
-        if (collider.TryGetComponent<PlayerArea>(out PlayerArea playerArea))
+        if (collider.TryGetComponent<Tank>(out Tank playerArea))
         {
             Debug.Log("Player has enter the area");
             playerAreaList.Add(playerArea);
@@ -19,14 +19,14 @@ public class MapAreaCollider : MonoBehaviour
 
     private void OnTriggerExit(Collider collider)
     {
-        if(collider.TryGetComponent<PlayerArea>(out PlayerArea playerArea))
+        if(collider.TryGetComponent<Tank>(out Tank playerArea))
         {
             playerAreaList.Remove(playerArea);
         }
         
     }
 
-    public List<PlayerArea> GetPlayerList()
+    public List<Tank> GetPlayerList()
     {
         return this.playerAreaList;
     }

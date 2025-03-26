@@ -714,7 +714,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 55ef22269faf2194e860794b040473d7, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: b073ccbf43e72c442a540960ebb05de7, type: 2}
   m_BuildHeightMesh: 0
 --- !u!154 &1497567642
 TerrainCollider:
@@ -1008,6 +1008,52 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 376363722}
   m_SourcePrefab: {fileID: 100100000, guid: e6634dbee7d70ca46a658dd7533ee340, type: 3}
+--- !u!1 &1922442388
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1922442390}
+  - component: {fileID: 1922442389}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1922442389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922442388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57b87df28b3b65644b624a6256311fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreAllies: 0
+  scoreEnnemies: 0
+--- !u!4 &1922442390
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922442388}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 220.60222, y: 449.28644, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1979872506
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1145,3 +1191,4 @@ SceneRoots:
   - {fileID: 954383956}
   - {fileID: 6848491281167736273}
   - {fileID: 1040001305}
+  - {fileID: 1922442390}
