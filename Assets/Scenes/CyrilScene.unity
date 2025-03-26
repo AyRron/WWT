@@ -242,7 +242,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6101152659543360470, guid: 8a0011275953aa746b8b7fc4978e2249, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -24.601528
+      value: 7.4
       objectReference: {fileID: 0}
     - target: {fileID: 6101152659543360470, guid: 8a0011275953aa746b8b7fc4978e2249, type: 3}
       propertyPath: m_LocalPosition.y
@@ -250,7 +250,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6101152659543360470, guid: 8a0011275953aa746b8b7fc4978e2249, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.4565792
+      value: -0.71
       objectReference: {fileID: 0}
     - target: {fileID: 6101152659543360470, guid: 8a0011275953aa746b8b7fc4978e2249, type: 3}
       propertyPath: m_LocalRotation.w
@@ -321,7 +321,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6101152659543360470, guid: 8a0011275953aa746b8b7fc4978e2249, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.9105854
+      value: -9.1
       objectReference: {fileID: 0}
     - target: {fileID: 6101152659543360470, guid: 8a0011275953aa746b8b7fc4978e2249, type: 3}
       propertyPath: m_LocalPosition.y
@@ -329,7 +329,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6101152659543360470, guid: 8a0011275953aa746b8b7fc4978e2249, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.0069056
+      value: -2.77
       objectReference: {fileID: 0}
     - target: {fileID: 6101152659543360470, guid: 8a0011275953aa746b8b7fc4978e2249, type: 3}
       propertyPath: m_LocalRotation.w
@@ -714,7 +714,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 55ef22269faf2194e860794b040473d7, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 5d6e226aef23a8e4b9bf859624f53bef, type: 2}
   m_BuildHeightMesh: 0
 --- !u!154 &1497567642
 TerrainCollider:
@@ -801,7 +801,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6101152659543360470, guid: 8a0011275953aa746b8b7fc4978e2249, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.725861
+      value: -21.23
       objectReference: {fileID: 0}
     - target: {fileID: 6101152659543360470, guid: 8a0011275953aa746b8b7fc4978e2249, type: 3}
       propertyPath: m_LocalPosition.y
@@ -809,7 +809,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6101152659543360470, guid: 8a0011275953aa746b8b7fc4978e2249, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.1234446
+      value: -2.66
       objectReference: {fileID: 0}
     - target: {fileID: 6101152659543360470, guid: 8a0011275953aa746b8b7fc4978e2249, type: 3}
       propertyPath: m_LocalRotation.w
@@ -848,6 +848,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a0011275953aa746b8b7fc4978e2249, type: 3}
+--- !u!114 &1625619760 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 293605855695587654, guid: 7cd55bea4617c8b449253930ed3c3e6e, type: 3}
+  m_PrefabInstance: {fileID: 1979872506}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ccb03ee96434688a40b22633e2b45f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1698097510
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -868,6 +879,10 @@ PrefabInstance:
       propertyPath: tankTransform
       value: 
       objectReference: {fileID: 659884791}
+    - target: {fileID: 1624639374682106749, guid: e6634dbee7d70ca46a658dd7533ee340, type: 3}
+      propertyPath: cameraController
+      value: 
+      objectReference: {fileID: 1625619760}
     - target: {fileID: 1833341119301115693, guid: e6634dbee7d70ca46a658dd7533ee340, type: 3}
       propertyPath: mainCamera
       value: 
@@ -876,6 +891,10 @@ PrefabInstance:
       propertyPath: tankTransform
       value: 
       objectReference: {fileID: 1019119915}
+    - target: {fileID: 1833341119301115693, guid: e6634dbee7d70ca46a658dd7533ee340, type: 3}
+      propertyPath: cameraController
+      value: 
+      objectReference: {fileID: 1625619760}
     - target: {fileID: 2238692525514758659, guid: e6634dbee7d70ca46a658dd7533ee340, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1000,6 +1019,10 @@ PrefabInstance:
       propertyPath: tankTransform
       value: 
       objectReference: {fileID: 21266110}
+    - target: {fileID: 7611417322923020749, guid: e6634dbee7d70ca46a658dd7533ee340, type: 3}
+      propertyPath: cameraController
+      value: 
+      objectReference: {fileID: 1625619760}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
