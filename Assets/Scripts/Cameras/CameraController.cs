@@ -10,8 +10,7 @@ namespace Script.Script_Camera
         public Vector3 offset; // Décalage de la caméra par rapport au tank
         public float edgeSize = 10.0f; // Taille de la zone de déclenchement du déplacement de la caméra
         public float moveSpeed = 10.0f; // Vitesse de déplacement de la caméra
-
-        private bool isFollowingPlayer = true;
+        public bool isFollowingPlayer = true;
 
         void Update()
         {

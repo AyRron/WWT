@@ -23,6 +23,7 @@ public class FocusTanks : MonoBehaviour
         if (tankTransform != null && cameraController != null)
         {
             cameraController.player = tankTransform; // Changer le tank ciblé dans CameraController
+            cameraController.isFollowingPlayer = true; // Activer le suivi du tank
         }
     }
 }
