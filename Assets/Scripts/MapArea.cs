@@ -1,121 +1,131 @@
-using NUnit.Framework;
 using UnityEngine;
 using System.Collections.Generic;
-using UnityEditor.Rendering;
 using System;
 
 public class MapArea : MonoBehaviour
 {
-    // State de la Area
-    public enum State
-    {
-        Neutral,
-        Captured
-    }
+    public enum State { Neutral, Captured }
+    public enum CurrentAttacker { Allies, Ennemies, None }
+    public enum OwnerZone { Allies, Ennemies, None }
 
-    public enum CurrentAttacker
-    {
-        Allies,
-        Ennemies
-    }
-
-    // Gérer l'évenement de capture de zone
-    // TODO : Utiliser l'event pour gérer l'affichage
     public event EventHandler OnCaptured;
 
-    // liste des colliders liées
     private List<MapAreaCollider> mapAreaColliderListe;
-    // avancement de la capture de zone
-    private float propgress;
+    private HashSet<Tank> listeTankAreaInside = new HashSet<Tank>();
+
+    public float propgressAllies = 0f;
+    public float propgressEnnemie = 0f;
     private float progressSpead = 1f;
     private float timeForCapture = 2f;
 
-    // score
-    private float scoreArea = 0f;
     private float speedScore = 1.5f;
 
-    // State
-    private State state;
+    private State state = State.Neutral;
+    private OwnerZone ownerZone = OwnerZone.None;
+    private CurrentAttacker currentAttacker = CurrentAttacker.None;
 
-    // Area attackers
-    private CurrentAttacker currentAttacker;
+    public GameManager gameManager;
 
-    // GameManager
-    private GameManager gameManager;
-
-
-    // Awake is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
-        this.mapAreaColliderListe = new List<MapAreaCollider>();
-
-
+        mapAreaColliderListe = new List<MapAreaCollider>();
         foreach (Transform child in transform)
         {
             MapAreaCollider mapAreaCollider = child.GetComponent<MapAreaCollider>();
-
-            if (mapAreaCollider != null)
-            {
-                mapAreaColliderListe.Add(mapAreaCollider);
-            }
+            if (mapAreaCollider != null) mapAreaColliderListe.Add(mapAreaCollider);
         }
-        this.state = State.Neutral;
 
-        // Invoque la méthode IncreaseScore toute les secondes
         InvokeRepeating(nameof(IncreaseScore), 1f, 1f);
-
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        // Gérer la state
-        switch (state)
+        UpdateTanksInside();
+        ProcessCaptureProgress();
+        HandleStateLogic();
+    }
+
+    private void UpdateTanksInside()
+    {
+        listeTankAreaInside.Clear();
+
+        foreach (MapAreaCollider mapAreaCollider in mapAreaColliderListe)
         {
-            // Si la zone n'est pas capturé
-            case State.Neutral:
-                List<Tank> listeTankAreaInside = new List<Tank>();
+            foreach (Tank tankInsideArea in mapAreaCollider.GetPlayerList())
+            {
+                listeTankAreaInside.Add(tankInsideArea);
+            }
+        }
 
-                foreach (MapAreaCollider mapAreaCollider in mapAreaColliderListe)
+        currentAttacker = listeTankAreaInside.Count > 0 ? GetCurrentAttacker() : CurrentAttacker.None;
+    }
+
+    private CurrentAttacker GetCurrentAttacker()
+    {
+        foreach (Tank tank in listeTankAreaInside)
+        {
+            if (gameManager.tanksAllies.Contains(tank)) return CurrentAttacker.Allies;
+            if (gameManager.tanksEnnemies.Contains(tank)) return CurrentAttacker.Ennemies;
+        }
+        return CurrentAttacker.None;
+    }
+
+    private void ProcessCaptureProgress()
+    {
+        if (currentAttacker == CurrentAttacker.Allies)
+        {
+            propgressAllies += progressSpead * Time.deltaTime;
+        }
+        else if (currentAttacker == CurrentAttacker.Ennemies)
+        {
+            propgressEnnemie += progressSpead * Time.deltaTime;
+        }
+
+        if (propgressAllies >= timeForCapture)
+        {
+            CaptureZone(OwnerZone.Allies);
+        }
+        else if (propgressEnnemie >= timeForCapture)
+        {
+            CaptureZone(OwnerZone.Ennemies);
+        }
+    }
+
+    private void CaptureZone(OwnerZone newOwner)
+    {
+        ownerZone = newOwner;
+        propgressAllies = 0f;
+        propgressEnnemie = 0f;
+        state = State.Captured;
+        OnCaptured?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void HandleStateLogic()
+    {
+        if (state == State.Captured)
+        {
+            foreach (Tank tank in listeTankAreaInside)
+            {
+                if (ownerZone == OwnerZone.Allies && gameManager.tanksEnnemies.Contains(tank))
                 {
-                    foreach (Tank tankInsideArea in mapAreaCollider.GetPlayerList())
-                    {
-                        if (!listeTankAreaInside.Contains(tankInsideArea))
-                        {
-                            if (gameManager.GetTanksAllies().Contains(tankInsideArea))
-                            {
-                                // Tank allié dans la zone
-                            }
-                            listeTankAreaInside.Add(tankInsideArea);
-                            // animation de la zone à gérer ici
-                        }
-                    }
+                    currentAttacker = CurrentAttacker.Ennemies;
                 }
-                this.propgress += listeTankAreaInside.Count * progressSpead * Time.deltaTime;
-
-                //Debug.Log("Player count Inside :" + listePlayerAreaInside.Count + ", progress :" + propgress);
-
-                if(this.propgress >= this.timeForCapture)
+                else if (ownerZone == OwnerZone.Ennemies && gameManager.tanksAllies.Contains(tank))
                 {
-                    state = State.Captured;
-                    OnCaptured?.Invoke(this, EventArgs.Empty);
-                    Debug.Log("Zone capturé !");
+                    currentAttacker = CurrentAttacker.Allies;
                 }
-
-                break;
-            case State.Captured:
-                // Si la zone est capturé
-
-                break;
+            }
         }
     }
 
     private void IncreaseScore()
     {
-        if(this.state == State.Captured)
+        if (state == State.Captured)
         {
-            this.scoreArea += speedScore;
-            Debug.Log("Score de la zone :" + scoreArea);
+            if (ownerZone == OwnerZone.Allies) gameManager.scoreAllies += speedScore;
+            else if (ownerZone == OwnerZone.Ennemies) gameManager.scoreEnnemies += speedScore;
+
+            Debug.Log($"Score allie: {gameManager.scoreAllies}, score ennemies: {gameManager.scoreEnnemies}");
         }
     }
 }

@@ -4,8 +4,8 @@ using System.Collections.Generic;
 public class GameManager : MonoBehaviour
 {
 
-    private List<Tank> tanksAllies;
-    private List<Tank> tanksEnnemies;
+    public List<Tank> tanksAllies = new List<Tank>();
+    public List<Tank> tanksEnnemies = new List<Tank>();
 
     public float scoreAllies = 0f;
     public float scoreEnnemies = 0f;
@@ -19,15 +19,5 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
-    }
-
-    public List<Tank> GetTanksAllies()
-    {
-        return tanksAllies;
-    }
-
-    public List<Tank> GetTankEnnemies()
-    {
-        return tanksEnnemies;
     }
 }
