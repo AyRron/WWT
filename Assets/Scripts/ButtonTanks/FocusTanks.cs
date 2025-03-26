@@ -1,9 +1,11 @@
+using Script.Script_Camera;
 using UnityEngine;
 
 public class FocusTanks : MonoBehaviour
 {
-    public Camera mainCamera;
+
     public Transform tankTransform;
+    public CameraController cameraController; // Référence à CameraController
 
     void Start()
     {
@@ -18,10 +20,9 @@ public class FocusTanks : MonoBehaviour
 
     void FocusOnTank()
     {
-        if (mainCamera != null && tankTransform != null)
+        if (tankTransform != null && cameraController != null)
         {
-            mainCamera.transform.position = tankTransform.position + new Vector3(0, 50, -50);
-            mainCamera.transform.LookAt(tankTransform);
+            cameraController.player = tankTransform; // Changer le tank ciblé dans CameraController
         }
     }
 }
