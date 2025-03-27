@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEngine.GraphicsBuffer;
 
 public class TankSelectionManager : MonoBehaviour
 {
@@ -11,10 +12,12 @@ public class TankSelectionManager : MonoBehaviour
     public List<GameObject> allTanksList = new List<GameObject>();
     public List<GameObject> tanksSelected = new List<GameObject>();
 
+
     public LayerMask clickable;
     public LayerMask ground;
-    public GameObject groundMarker;
+    public LayerMask attackable;
 
+    public bool attackCursorVisible;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -52,20 +55,51 @@ public class TankSelectionManager : MonoBehaviour
             }
         }
 
-        //if (Input.GetMouseButtonDown(1) && tanksSelected.Count > 0)
-        //{
-        //    float maxDistance = Mathf.Infinity;
-        //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        //    RaycastHit hit;
+        // Attack target
+        if (tanksSelected.Count > 0 && AtleastOneOffensiveTank(tanksSelected))
+        {
+            float maxDistance = Mathf.Infinity;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
 
-        //    if (Physics.Raycast(ray, out hit, maxDistance, ground))
-        //    {
-        //        groundMarker.transform.position = hit.point;
+            if (Physics.Raycast(ray, out hit, maxDistance, attackable))
+            {
+                Debug.Log("enemy");
 
-        //        groundMarker.SetActive(false);
-        //        groundMarker.SetActive(true);
-        //    }
-        //}
+                attackCursorVisible = true;
+
+                if (Input.GetMouseButtonDown(1))
+                {
+                    Transform target = hit.transform;
+
+                    foreach (GameObject tank in tanksSelected)
+                    {
+                        if (tank.GetComponent<AttackController>())
+                        {
+                            tank.GetComponent<AttackController>().targetToAttack = target;
+                        }
+
+                    }
+                }
+            } else
+            {
+                attackCursorVisible = false;
+            }
+        }
+
+    }
+
+    private bool AtleastOneOffensiveTank(List<GameObject> tanksSelected)
+    {
+        foreach (GameObject tank in tanksSelected)
+        {
+            if (tank.GetComponent<AttackController>())
+            {
+                return true;
+            }
+        }
+        return false;
+
     }
 
     private void MultiSelect(GameObject tank)
@@ -91,8 +125,6 @@ public class TankSelectionManager : MonoBehaviour
             EnableTankMovement(tank, false);
             TriggerSelectionIndicator(tank, false);
         }
-
-        groundMarker.SetActive(false);
 
         tanksSelected.Clear();
     }

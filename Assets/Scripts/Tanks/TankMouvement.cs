@@ -11,6 +11,8 @@ public class TankMovement : MonoBehaviour
     [SerializeField] private NavMeshAgent _agent = null;
 
     public LayerMask ground;
+    public bool isCommandeToMove;
+
 
     private void Start()
     {
@@ -22,25 +24,23 @@ public class TankMovement : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-
-                float maxDistance = 100f;
+                float maxDistance = Mathf.Infinity;
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
 
-                
-               
                 if (Physics.Raycast(ray, out hit, maxDistance, ground)){
-                    Debug.Log(hit.collider.name);
-                    
-                    
+                    isCommandeToMove = true;
                     _agent.SetDestination(hit.point);
-                    
-                    
-                
-                }
-                
-            
+                }  
         }
+
+        // Agent reached destination
+        if(_agent.hasPath == false || _agent.remainingDistance == _agent.stoppingDistance)
+        {
+            isCommandeToMove=false;
+        }
+
+
 
     }
 
