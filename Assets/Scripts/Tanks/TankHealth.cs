@@ -13,24 +13,22 @@ public class TankHealth : MonoBehaviour
     private bool _dead;                                // Has the tank been reduced beyond zero health yet?
     
     
-    void Start()
+    private void Start()
     {
         if (slider == null)
         {
             slider = GetComponentInChildren<Slider>();
+            slider.minValue = 0f;
+            slider.maxValue = startingHealth;
+            slider.value = startingHealth;
         }
 
         if (slider == null)
         {
             Debug.LogError("Le Slider n'a pas été trouvé dans les enfants de " + gameObject.name);
         }
-        
-        SetHealthUI();
 
-        while (_currentHealth >= 50f)
-        {
-            TakeDamage(2f);
-        }
+        SetHealthUI();
     }
     
     
