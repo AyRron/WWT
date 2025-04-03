@@ -28,21 +28,16 @@ public class tankFollowState : StateMachineBehaviour
             // If there is no other direct command to move
             if (animator.transform.GetComponent<TankMovement>().isCommandeToMove == false)
             {
-                // Moving Unit towards target
                 agent.SetDestination(attackController.targetToAttack.position);
 
-                // Calculate the direction to the target
                 Vector3 direction = attackController.targetToAttack.position - animator.transform.position;
 
-                // Prevent the rotation on the X and Y axis (keep Y axis rotation for horizontal facing)
                 direction.y = 0;
 
-                if (direction.sqrMagnitude > 0.01f)  // Check if the direction is significant
+                if (direction.sqrMagnitude > 0.01f)  
                 {
-                    // Create a rotation towards the target on Y axis
                     Quaternion targetRotation = Quaternion.LookRotation(direction);
 
-                    // Apply only the Y axis rotation to the animator's transform (so X and Z do not change)
                     animator.transform.rotation = Quaternion.Euler(0, targetRotation.eulerAngles.y, 0);
                 }
 
@@ -50,7 +45,6 @@ public class tankFollowState : StateMachineBehaviour
 
                 if (distanceFromTarget < attackingDistance)
                 {
-                    Debug.Log("pass attacking");
 
                     agent.SetDestination(animator.transform.position);
 

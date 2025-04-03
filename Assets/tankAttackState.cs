@@ -28,15 +28,16 @@ public class tankAttackState : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        // si tank a une cible et que la destination du curseur est atteinte
-        if (attackController.targetToAttack != null && (animator.transform.GetComponent<TankMovement>().isCommandeToMove == false))
-        {
-            Debug.Log("attacking");
-            LookAtTarget();
-            agent.SetDestination(animator.transform.position);
 
+        // If there is no other direct command to move
+        if (animator.transform.GetComponent<TankMovement>().isCommandeToMove == false)
+        {
+            LookAtTarget();
+            //agent.SetDestination(animator.transform.position);
             //agent.SetDestination(attackController.targetToAttack.position);
+
         }
+        
         float distanceFromTarget = Vector3.Distance(attackController.targetToAttack.position, animator.transform.position);
 
         if (distanceFromTarget > stopAttackingDistance || attackController.targetToAttack == null)
@@ -44,6 +45,7 @@ public class tankAttackState : StateMachineBehaviour
             Debug.Log("Arret attack");
             animator.SetBool("isAttacking", false);
         }
+
 
     }
 
