@@ -30,7 +30,7 @@ public class tankAttackState : StateMachineBehaviour
     {
 
         // If there is no other direct command to move
-        if (animator.transform.GetComponent<TankMovement>().isCommandeToMove == false)
+        if (attackController.targetToAttack != null && animator.transform.GetComponent<TankMovement>().isCommandeToMove == false)
         {
             LookAtTarget();
             //agent.SetDestination(animator.transform.position);
@@ -42,28 +42,11 @@ public class tankAttackState : StateMachineBehaviour
 
         if (distanceFromTarget > stopAttackingDistance || attackController.targetToAttack == null)
         {
-            Debug.Log("Arret attack");
             animator.SetBool("isAttacking", false);
         }
 
 
     }
-
-    //private void LookAtlayer()
-    //{
-    //    //Vector3 direction = attackController.targetToAttack.position - agent.transform.position;
-    //    //agent.transform.rotation = Quaternion.LookRotation(direction);
-
-    //    //var yRotation = agent.transform.eulerAngles.y;
-    //    //agent.transform.rotation = Quaternion.Euler(0, yRotation, 0);
-
-    //    if (tourelle == null || attackController.targetToAttack == null) return;
-
-    //    Vector3 direction = attackController.targetToAttack.position - tourelle.position;
-    //    direction.y = 0;  // Garde la rotation uniquement sur l'axe Y pour éviter que la tourelle s'incline
-    //    tourelle.rotation = Quaternion.LookRotation(direction);
-
-    //}
 
 
     private void LookAtTarget()

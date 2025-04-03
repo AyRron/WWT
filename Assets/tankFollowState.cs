@@ -25,6 +25,16 @@ public class tankFollowState : StateMachineBehaviour
         }
         else
         {
+            float distanceFromTarget = Vector3.Distance(attackController.targetToAttack.position, animator.transform.position);
+
+            if (distanceFromTarget < attackingDistance)
+            {
+
+                agent.SetDestination(animator.transform.position);
+
+                animator.SetBool("isAttacking", true);
+            }
+
             // If there is no other direct command to move
             if (animator.transform.GetComponent<TankMovement>().isCommandeToMove == false)
             {
@@ -40,18 +50,7 @@ public class tankFollowState : StateMachineBehaviour
 
                     animator.transform.rotation = Quaternion.Euler(0, targetRotation.eulerAngles.y, 0);
                 }
-
-                float distanceFromTarget = Vector3.Distance(attackController.targetToAttack.position, animator.transform.position);
-
-                if (distanceFromTarget < attackingDistance)
-                {
-
-                    agent.SetDestination(animator.transform.position);
-
-                    animator.SetBool("isAttacking", true);
-                }
             }
-
         }
     }
 
