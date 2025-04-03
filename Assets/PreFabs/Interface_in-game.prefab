@@ -616,7 +616,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 480, y: 0}
-  m_SizeDelta: {x: 634.8495, y: 41.9132}
+  m_SizeDelta: {x: 635, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5360041121526422535
 CanvasRenderer:
@@ -667,6 +667,7 @@ GameObject:
   - component: {fileID: 1726526541149149796}
   - component: {fileID: 6752572862849925076}
   - component: {fileID: 4865490789853342134}
+  - component: {fileID: 2157089498595394014}
   m_Layer: 5
   m_Name: Barre Allie
   m_TagString: Untagged
@@ -690,8 +691,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -40, y: -0.000030517578}
-  m_SizeDelta: {x: 553.712, y: 41.9132}
+  m_AnchoredPosition: {x: -0.3, y: -0.000030517578}
+  m_SizeDelta: {x: 635, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6752572862849925076
 CanvasRenderer:
@@ -721,16 +722,28 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
+  m_FillMethod: 0
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2157089498595394014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5447485194233106192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5018ef248b67f43bc6cc609beeac01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5987664072708335492
 GameObject:
   m_ObjectHideFlags: 0
@@ -743,6 +756,7 @@ GameObject:
   - component: {fileID: 4039664696812162849}
   - component: {fileID: 1539737938199273173}
   - component: {fileID: 8316924867330517905}
+  - component: {fileID: 836960331175115743}
   m_Layer: 5
   m_Name: Interface_in-game
   m_TagString: Untagged
@@ -788,7 +802,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -834,6 +848,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &836960331175115743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5987664072708335492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61b90de3bb99447b99a150fa307ad261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6682146731675655992
 GameObject:
   m_ObjectHideFlags: 0
@@ -845,6 +871,7 @@ GameObject:
   - component: {fileID: 8353412136797664463}
   - component: {fileID: 464986671500804163}
   - component: {fileID: 2102201619060621018}
+  - component: {fileID: 12347139097827761}
   m_Layer: 5
   m_Name: Barre Ennemie
   m_TagString: Untagged
@@ -868,8 +895,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 40, y: 0.000061035156}
-  m_SizeDelta: {x: 553.7477, y: 41.9132}
+  m_AnchoredPosition: {x: -0, y: 0.000061035156}
+  m_SizeDelta: {x: 635, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &464986671500804163
 CanvasRenderer:
@@ -899,16 +926,28 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
+  m_FillMethod: 0
+  m_FillAmount: 0
   m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillOrigin: 1
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &12347139097827761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6682146731675655992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5018ef248b67f43bc6cc609beeac01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7287071033039411440
 GameObject:
   m_ObjectHideFlags: 0
@@ -1509,7 +1548,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -480, y: 0}
-  m_SizeDelta: {x: 634.8495, y: 41.9132}
+  m_SizeDelta: {x: 635, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1416211072686758310
 CanvasRenderer:
