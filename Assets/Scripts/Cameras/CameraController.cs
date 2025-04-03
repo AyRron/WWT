@@ -4,7 +4,6 @@ namespace Script.Script_Camera
 {
     public class CameraController : MonoBehaviour
     {
-        
         public Transform player; // Le tank
         public float smoothSpeed = 0.125f; // Vitesse de suivi de la caméra
         public Vector3 offset; // Décalage de la caméra par rapport au tank
@@ -12,16 +11,42 @@ namespace Script.Script_Camera
         public float moveSpeed = 10.0f; // Vitesse de déplacement de la caméra
         public bool isFollowingPlayer = true;
 
+        void Start()
+        {
+            // Chercher automatiquement le tank "Player" au démarrage
+            if (player == null)
+            {
+                GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+                if (playerObj != null)
+                {
+                    player = playerObj.transform;
+                }
+                else
+                {
+                    Debug.LogWarning("Aucun objet avec le tag 'Player' n'a été trouvé !");
+                }
+            }
+        }
+
         void Update()
         {
-            if (Input.GetKey(KeyCode.Space))
+            // Refocus sur le tank avec la touche Espace
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 isFollowingPlayer = true;
+                if (player != null)
+                {
+                    // Position immédiate de la caméra
+                    transform.position = player.position + offset;
+                    transform.LookAt(player);
+                }
             }
-            /*else if (Input.mousePosition.x >= Screen.width - edgeSize ||
-                     Input.mousePosition.x <= edgeSize ||
-                     Input.mousePosition.y >= Screen.height - edgeSize ||
-                     Input.mousePosition.y <= edgeSize)*/
+
+            // Basculer vers le mode libre si la souris est près des bords
+            if (Input.mousePosition.x >= Screen.width - edgeSize ||
+                Input.mousePosition.x <= edgeSize ||
+                Input.mousePosition.y >= Screen.height - edgeSize ||
+                Input.mousePosition.y <= edgeSize)
             {
                 isFollowingPlayer = false;
             }
@@ -46,6 +71,10 @@ namespace Script.Script_Camera
                 
                 transform.LookAt(player);
             }
+            else
+            {
+                Debug.LogWarning("Aucun tank assigné pour le suivi de la caméra !");
+            }
         }
 
         void FreeMove()
@@ -68,11 +97,8 @@ namespace Script.Script_Camera
             {
                 moveDirection += Vector3.back;
             }
-            
 
             transform.Translate(moveDirection * moveSpeed * Time.deltaTime, Space.World);
-            
         }
-
     }
 }
