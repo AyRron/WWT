@@ -72,18 +72,11 @@ public class tankAttackState : StateMachineBehaviour
         // Calculer l'angle dans le plan XY (ou XZ selon ton modèle)
         float angleZ = Mathf.Atan2(localDirection.y, localDirection.x) * Mathf.Rad2Deg;
 
-        // Vérifier si la tourelle est inversée
-        if (Vector3.Dot(tankTurret.forward, Vector3.right) < 0)
-        {
-            // Appliquer progressivement la rotation de 180° en 2 à 3 updates
-            float targetAngle = angleZ + 180f;
-            float smoothAngle = Mathf.LerpAngle(tankTurret.localRotation.eulerAngles.z, targetAngle, 0.3f); // Lerp sur 30% de l'intervalle
-            tankTurret.localRotation = Quaternion.Euler(0, 0, smoothAngle);
-            return; // On sort ici pour ne pas réappliquer l'angle directement
-        }
+        float targetAngle = angleZ + 180f;
+        float smoothAngle = Mathf.LerpAngle(tankTurret.localRotation.eulerAngles.z, targetAngle, 0.3f);
+        tankTurret.localRotation = Quaternion.Euler(0, 0, smoothAngle);
 
-        // Appliquer normalement la rotation sur Z
-        tankTurret.localRotation = Quaternion.Euler(0, 0, angleZ);
+
     }
 
 
