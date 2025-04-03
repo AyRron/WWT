@@ -1551,7 +1551,7 @@ GameObject:
   - component: {fileID: 1873506916014648706}
   - component: {fileID: 4940677677710636447}
   m_Layer: 5
-  m_Name: Points Allie
+  m_Name: Points Alli
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
