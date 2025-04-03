@@ -12,10 +12,11 @@ public class TankSelectionManager : MonoBehaviour
     public List<GameObject> allTanksList = new List<GameObject>();
     public List<GameObject> tanksSelected = new List<GameObject>();
 
-
     public LayerMask clickable;
     public LayerMask ground;
     public LayerMask attackable;
+    public GameObject groundMarker;
+    private Camera mainCamera;
 
     public bool attackCursorVisible;
     private void Awake()
@@ -25,25 +26,38 @@ public class TankSelectionManager : MonoBehaviour
             Destroy(gameObject);
         }
         else {
-
             Instance = this;
+            mainCamera = Camera.main;
+            if (mainCamera == null)
+            {
+                Debug.LogError("La caméra principale n'a pas été trouvée dans la scène. Assurez-vous qu'une caméra est marquée comme 'MainCamera'.");
+                enabled = false;
+                return;
+            }
         }
     }
     void Update()
     {
+        if (mainCamera == null) return;
+
         if (Input.GetMouseButtonDown(0))
         {
             float maxDistance = Mathf.Infinity;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit, maxDistance, clickable))
             {
-                if (Input.GetKey(KeyCode.LeftShift))
+                if (hit.collider != null && hit.collider.gameObject != null)
                 {
-                    MultiSelect(hit.collider.gameObject);
-                } else {
-                    SelectByClicking(hit.collider.gameObject);
+                    if (Input.GetKey(KeyCode.LeftShift))
+                    {
+                        MultiSelect(hit.collider.gameObject);
+                    } 
+                    else 
+                    {
+                        SelectByClicking(hit.collider.gameObject);
+                    }
                 }
             }
             else
@@ -59,7 +73,7 @@ public class TankSelectionManager : MonoBehaviour
         if (tanksSelected.Count > 0 && AtleastOneOffensiveTank(tanksSelected))
         {
             float maxDistance = Mathf.Infinity;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit, maxDistance, attackable))
@@ -86,7 +100,6 @@ public class TankSelectionManager : MonoBehaviour
                 attackCursorVisible = false;
             }
         }
-
     }
 
     private bool AtleastOneOffensiveTank(List<GameObject> tanksSelected)
@@ -104,6 +117,8 @@ public class TankSelectionManager : MonoBehaviour
 
     private void MultiSelect(GameObject tank)
     {
+        if (tank == null) return;
+
         if (tanksSelected.Contains(tank) == false)
         {
             tanksSelected.Add(tank);
@@ -120,10 +135,20 @@ public class TankSelectionManager : MonoBehaviour
 
     private void DeselectAll()
     {
+        if (tanksSelected == null) return;
+
         foreach (var tank in tanksSelected)
         {
-            EnableTankMovement(tank, false);
-            TriggerSelectionIndicator(tank, false);
+            if (tank != null)
+            {
+                EnableTankMovement(tank, false);
+                TriggerSelectionIndicator(tank, false);
+            }
+        }
+
+        if (groundMarker != null)
+        {
+            groundMarker.SetActive(false);
         }
 
         tanksSelected.Clear();
@@ -131,23 +156,34 @@ public class TankSelectionManager : MonoBehaviour
 
     private void SelectByClicking(GameObject tank)
     {
+        if (tank == null) return;
+
         DeselectAll();
 
         tanksSelected.Add(tank);
-
         TriggerSelectionIndicator(tank, true);
-
         EnableTankMovement(tank, true);
-
     }
 
     private void EnableTankMovement(GameObject tank, bool shouldMove)
     {
-        tank.GetComponent<TankMovement>().enabled = shouldMove;
+        if (tank == null) return;
+
+        var movement = tank.GetComponent<TankMovement>();
+        if (movement != null)
+        {
+            movement.enabled = shouldMove;
+        }
     }
 
     private void TriggerSelectionIndicator(GameObject tank, bool isVisible)
     {
-        tank.transform.GetChild(1).gameObject.SetActive(isVisible);
+        if (tank == null) return;
+
+        var selectionIndicator = tank.transform.GetChild(1)?.gameObject;
+        if (selectionIndicator != null)
+        {
+            selectionIndicator.SetActive(isVisible);
+        }
     }
 }
