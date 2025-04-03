@@ -7,6 +7,7 @@ public class tankIdleState : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         attackController = animator.GetComponent<AttackController>();
+        attackController.SetIdleMaterial();
     }
 
     //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

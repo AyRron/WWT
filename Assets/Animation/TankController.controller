@@ -106,7 +106,8 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -1926999769771326518}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: 3909766781677647358}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -251,7 +252,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d51efad6edae9042b5494ab2134d4a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackingDistance: 0
+  attackingDistance: 35
+--- !u!114 &3909766781677647358
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d59aeab2f221b24e9308cc8692a26f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stopAttackingDistance: 35.2
 --- !u!1101 &7599577485024340406
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

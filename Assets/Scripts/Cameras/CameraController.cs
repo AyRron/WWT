@@ -19,10 +19,10 @@ namespace Script.Script_Camera
             {
                 isFollowingPlayer = true;
             }
-            else if (Input.mousePosition.x >= Screen.width - edgeSize ||
+            /*else if (Input.mousePosition.x >= Screen.width - edgeSize ||
                      Input.mousePosition.x <= edgeSize ||
                      Input.mousePosition.y >= Screen.height - edgeSize ||
-                     Input.mousePosition.y <= edgeSize)
+                     Input.mousePosition.y <= edgeSize)*/
             {
                 isFollowingPlayer = false;
             }

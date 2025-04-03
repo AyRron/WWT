@@ -29,14 +29,16 @@ public class TankMovement : MonoBehaviour
                 RaycastHit hit;
 
                 if (Physics.Raycast(ray, out hit, maxDistance, ground)){
+                    Debug.Log("click");
                     isCommandeToMove = true;
                     _agent.SetDestination(hit.point);
                 }  
         }
 
-        // Agent reached destination
-        if(_agent.hasPath == false || _agent.remainingDistance == _agent.stoppingDistance)
+        // Vérification si l'agent a atteint sa destination
+        if (_agent.hasPath == false || _agent.remainingDistance == _agent.stoppingDistance)
         {
+            Debug.Log("agent a atteint sa destination");
             isCommandeToMove=false;
         }
 
