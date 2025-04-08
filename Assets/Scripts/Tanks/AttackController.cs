@@ -9,6 +9,7 @@ public class AttackController : MonoBehaviour
     public Material idleStateMaterial;
     public Material followStateMaterial;
     public Material attackStateMaterial;
+    public TankHealth tankHealftTarget;
 
     public string enemyTag;
 
@@ -17,6 +18,7 @@ public class AttackController : MonoBehaviour
         if(other.CompareTag(enemyTag) && targetToAttack == null)
         {
             targetToAttack = other.transform;
+            tankHealftTarget = other.GetComponent<TankHealth>();
         }
     }
 

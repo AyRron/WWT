@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
 using UnityEngine.AI;
 
 public class tankAttackState : StateMachineBehaviour
@@ -39,6 +40,12 @@ public class tankAttackState : StateMachineBehaviour
 
         if (distanceFromTarget > stopAttackingDistance || _attackController.targetToAttack == null)
         {
+            animator.SetBool("isAttacking", false);
+        }
+
+        if (_attackController.tankHealftTarget._currentHealth < 0)
+        {
+            _attackController.targetToAttack = null;
             animator.SetBool("isAttacking", false);
         }
     }
