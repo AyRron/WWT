@@ -1013,7 +1013,7 @@ GameObject:
   - component: {fileID: 8071420507218386613}
   - component: {fileID: 522209661172696972}
   m_Layer: 0
-  m_Name: Area
+  m_Name: AreaV2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
