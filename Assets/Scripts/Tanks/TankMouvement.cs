@@ -35,10 +35,10 @@ public class TankMovement : MonoBehaviour
                 }  
         }
 
-        // Vérification si l'agent a atteint sa destination
+        // VÃ©rification si l'agent a atteint sa destination
         if (_agent.hasPath == false || _agent.remainingDistance == _agent.stoppingDistance)
         {
-            Debug.Log("agent a atteint sa destination");
+            //Debug.Log("agent a atteint sa destination");
             isCommandeToMove=false;
         }
 
