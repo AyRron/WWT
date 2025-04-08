@@ -550,7 +550,7 @@ GameObject:
   - component: {fileID: 4143831065924781371}
   m_Layer: 6
   m_Name: Tank
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -592,7 +592,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8649015326456102449}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c4b166e5c26398498bfec1583658e16, type: 3}
   m_Name: 
@@ -673,6 +673,7 @@ MonoBehaviour:
   idleStateMaterial: {fileID: 0}
   followStateMaterial: {fileID: 0}
   attackStateMaterial: {fileID: 0}
+  enemyTag: Enemy
 --- !u!95 &7835337735538527758
 Animator:
   serializedVersion: 7
@@ -746,7 +747,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 5614279425530795210, guid: e90861cbc1fd89846bca3c8f6648a7fc, type: 3}
   firePoint: {fileID: 3155253964013459594}
-  shootForce: 20
+  shootForce: 56.8
   fireRate: 1
 --- !u!1001 &1184028501343790410
 PrefabInstance:

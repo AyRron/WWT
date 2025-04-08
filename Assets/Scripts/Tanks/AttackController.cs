@@ -1,4 +1,6 @@
+using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class AttackController : MonoBehaviour
 {
@@ -8,13 +10,11 @@ public class AttackController : MonoBehaviour
     public Material followStateMaterial;
     public Material attackStateMaterial;
 
-
-
-
+    public string enemyTag;
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Enemy") && targetToAttack == null)
+        if(other.CompareTag(enemyTag) && targetToAttack == null)
         {
             targetToAttack = other.transform;
         }
@@ -22,7 +22,7 @@ public class AttackController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Enemy") && targetToAttack != null) 
+        if (other.CompareTag(enemyTag) && targetToAttack != null) 
         {
             Debug.Log("fuit");
             targetToAttack = null;
