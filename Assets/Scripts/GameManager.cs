@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -19,10 +20,6 @@ public class GameManager : MonoBehaviour
     private TextMeshProUGUI _timerText;
     private float _timer = 12f;
     
-    private bool _isPlaying;
-    
-    public GameObject mainMenuUI;
-    
     private void Awake()
     {
         if (timerUI != null)
@@ -35,10 +32,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         UpdateScoreBare();
-        if (_isPlaying)
-        {
-            UpdateTimer();
-        }
+        UpdateTimer();
     }
 
     private void UpdateScoreBare()
@@ -64,15 +58,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void StartGame()
-    {
-        _isPlaying = true;
-        mainMenuUI.SetActive(false);
-    }
     
     private void EndGame()
     {
-        _isPlaying = false;
-        mainMenuUI.SetActive(true);
+        SceneManager.LoadScene ("MainMenu");
     }
 }
