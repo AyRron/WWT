@@ -235,6 +235,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1624639374682106749, guid: 12bcb7b4a81d796438175bd41833211e, type: 3}
+      propertyPath: tankTransform
+      value: 
+      objectReference: {fileID: 2121680209}
+    - target: {fileID: 1624639374682106749, guid: 12bcb7b4a81d796438175bd41833211e, type: 3}
+      propertyPath: cameraController
+      value: 
+      objectReference: {fileID: 649932076}
     - target: {fileID: 1833341119301115693, guid: 12bcb7b4a81d796438175bd41833211e, type: 3}
       propertyPath: tankTransform
       value: 
@@ -327,22 +335,18 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 649932079}
-    - target: {fileID: 4039664696812162849, guid: 12bcb7b4a81d796438175bd41833211e, type: 3}
-      propertyPath: m_RenderMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4039664696812162849, guid: 12bcb7b4a81d796438175bd41833211e, type: 3}
-      propertyPath: m_PixelPerfect
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5987664072708335492, guid: 12bcb7b4a81d796438175bd41833211e, type: 3}
       propertyPath: m_Name
       value: interface new
       objectReference: {fileID: 0}
-    - target: {fileID: 5987664072708335492, guid: 12bcb7b4a81d796438175bd41833211e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 7611417322923020749, guid: 12bcb7b4a81d796438175bd41833211e, type: 3}
+      propertyPath: tankTransform
+      value: 
+      objectReference: {fileID: 2121680209}
+    - target: {fileID: 7611417322923020749, guid: 12bcb7b4a81d796438175bd41833211e, type: 3}
+      propertyPath: cameraController
+      value: 
+      objectReference: {fileID: 649932076}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1125,6 +1129,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82839eec7411a1344ad75cc9ffb779a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &2121680209 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6101152659543360470, guid: 8a0011275953aa746b8b7fc4978e2249, type: 3}
+  m_PrefabInstance: {fileID: 1508443821}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2123955911
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1253,10 +1262,6 @@ PrefabInstance:
       propertyPath: timerUI
       value: 
       objectReference: {fileID: 985576176}
-    - target: {fileID: 2593557884645029267, guid: 9009e4b71ce72da4ab0c941e98ce55ef, type: 3}
-      propertyPath: mainMenuUI
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 2593557884645029267, guid: 9009e4b71ce72da4ab0c941e98ce55ef, type: 3}
       propertyPath: alliesScore
       value: 

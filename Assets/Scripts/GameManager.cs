@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject timerUI;
     private TextMeshProUGUI _timerText;
-    private float _timer = 12f;
+    private float _timer = 120f;
     
     private void Awake()
     {
