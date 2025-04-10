@@ -235,22 +235,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1624639374682106749, guid: 12bcb7b4a81d796438175bd41833211e, type: 3}
-      propertyPath: tankTransform
-      value: 
-      objectReference: {fileID: 2121680209}
-    - target: {fileID: 1624639374682106749, guid: 12bcb7b4a81d796438175bd41833211e, type: 3}
-      propertyPath: cameraController
-      value: 
-      objectReference: {fileID: 649932076}
-    - target: {fileID: 1833341119301115693, guid: 12bcb7b4a81d796438175bd41833211e, type: 3}
-      propertyPath: tankTransform
-      value: 
-      objectReference: {fileID: 1019119915}
-    - target: {fileID: 1833341119301115693, guid: 12bcb7b4a81d796438175bd41833211e, type: 3}
-      propertyPath: cameraController
-      value: 
-      objectReference: {fileID: 649932076}
     - target: {fileID: 2238692525514758659, guid: 12bcb7b4a81d796438175bd41833211e, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -363,19 +347,16 @@ PrefabInstance:
       propertyPath: cameraController
       value: 
       objectReference: {fileID: 649932076}
-    - target: {fileID: 7611417322923020749, guid: 12bcb7b4a81d796438175bd41833211e, type: 3}
-      propertyPath: tankTransform
-      value: 
-      objectReference: {fileID: 2121680209}
-    - target: {fileID: 7611417322923020749, guid: 12bcb7b4a81d796438175bd41833211e, type: 3}
-      propertyPath: cameraController
-      value: 
-      objectReference: {fileID: 649932076}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12bcb7b4a81d796438175bd41833211e, type: 3}
+--- !u!1 &521832828 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2812156522024439251, guid: 12bcb7b4a81d796438175bd41833211e, type: 3}
+  m_PrefabInstance: {fileID: 337472257}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &522936077 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6613786866293691777, guid: 218565ad0001c0544a9d84edd153437e, type: 3}
@@ -1290,6 +1271,10 @@ PrefabInstance:
       propertyPath: enemiesScore
       value: 
       objectReference: {fileID: 582667482}
+    - target: {fileID: 2593557884645029267, guid: 9009e4b71ce72da4ab0c941e98ce55ef, type: 3}
+      propertyPath: startTimerUI
+      value: 
+      objectReference: {fileID: 521832828}
     - target: {fileID: 2593557884645029267, guid: 9009e4b71ce72da4ab0c941e98ce55ef, type: 3}
       propertyPath: 'tanksAllies.Array.data[0]'
       value: 

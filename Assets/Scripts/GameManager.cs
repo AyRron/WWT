@@ -1,12 +1,12 @@
 using UnityEngine;
-using System.Collections.Generic;
-using TMPro;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using TMPro;
+using System.Collections;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
-
     public List<Tank> tanksAllies = new List<Tank>();
     public List<Tank> tanksEnemies = new List<Tank>();
 
@@ -16,23 +16,40 @@ public class GameManager : MonoBehaviour
     public float scoreAllies;
     public float scoreEnemies;
 
+    public GameObject startTimerUI;
+    private TextMeshProUGUI _startTimerText;
+
     public GameObject timerUI;
     private TextMeshProUGUI _timerText;
     private float _timer = 120f;
-    
+
+    private bool _gameStarted;
+
     private void Awake()
     {
         if (timerUI != null)
         {
             _timerText = timerUI.GetComponent<TextMeshProUGUI>();
         }
+        if (startTimerUI != null)
+        {
+            var text = startTimerUI.transform.Find("StartTimerText")?.gameObject;
+            _startTimerText = text?.GetComponent<TextMeshProUGUI>();
+        }
     }
 
-    // Update is called once per frame
+    private void Start()
+    {
+        StartCoroutine(CountdownBeforeStart());
+    }
+
     void Update()
     {
-        UpdateScoreBare();
-        UpdateTimer();
+        if (_gameStarted)
+        {
+            UpdateScoreBare();
+            UpdateTimer();
+        }
     }
 
     private void UpdateScoreBare()
@@ -40,7 +57,7 @@ public class GameManager : MonoBehaviour
         alliesScore.fillAmount = scoreAllies / 100f;
         enemiesScore.fillAmount = scoreEnemies / 100f;
     }
-    
+
     private void UpdateTimer()
     {
         if (_timer > 0)
@@ -58,9 +75,28 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    
     private void EndGame()
     {
-        SceneManager.LoadScene ("MainMenu");
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    private IEnumerator CountdownBeforeStart()
+    {
+        int countdown = 3;
+        
+        startTimerUI.SetActive(true);
+        
+        while (countdown > 0)
+        {
+            _startTimerText.text = countdown.ToString();
+            yield return new WaitForSeconds(1f);
+            countdown--;
+        }
+
+        _startTimerText.text = "C'est parti!";
+        yield return new WaitForSeconds(1f);
+        
+        startTimerUI.SetActive(false);
+        _gameStarted = true;
     }
 }
