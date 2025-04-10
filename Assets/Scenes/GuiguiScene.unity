@@ -331,6 +331,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2325245556455247860, guid: 12bcb7b4a81d796438175bd41833211e, type: 3}
+      propertyPath: tankTransform
+      value: 
+      objectReference: {fileID: 2121680209}
+    - target: {fileID: 2325245556455247860, guid: 12bcb7b4a81d796438175bd41833211e, type: 3}
+      propertyPath: cameraController
+      value: 
+      objectReference: {fileID: 649932076}
+    - target: {fileID: 2762514522885201989, guid: 12bcb7b4a81d796438175bd41833211e, type: 3}
+      propertyPath: tankTransform
+      value: 
+      objectReference: {fileID: 2121680209}
+    - target: {fileID: 2762514522885201989, guid: 12bcb7b4a81d796438175bd41833211e, type: 3}
+      propertyPath: cameraController
+      value: 
+      objectReference: {fileID: 649932076}
     - target: {fileID: 4039664696812162849, guid: 12bcb7b4a81d796438175bd41833211e, type: 3}
       propertyPath: m_Camera
       value: 
@@ -339,6 +355,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: interface new
       objectReference: {fileID: 0}
+    - target: {fileID: 6425355165453548973, guid: 12bcb7b4a81d796438175bd41833211e, type: 3}
+      propertyPath: tankTransform
+      value: 
+      objectReference: {fileID: 1019119915}
+    - target: {fileID: 6425355165453548973, guid: 12bcb7b4a81d796438175bd41833211e, type: 3}
+      propertyPath: cameraController
+      value: 
+      objectReference: {fileID: 649932076}
     - target: {fileID: 7611417322923020749, guid: 12bcb7b4a81d796438175bd41833211e, type: 3}
       propertyPath: tankTransform
       value: 
@@ -1186,10 +1210,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TankCamera
       objectReference: {fileID: 0}
-    - target: {fileID: 7767061859783465986, guid: 411f0f72b58cde449b17074db8908493, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1019119915}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1355,6 +1375,7 @@ SceneRoots:
   - {fileID: 700610618}
   - {fileID: 1497567644}
   - {fileID: 116793458}
+  - {fileID: 1508443821}
   - {fileID: 1530884567}
   - {fileID: 1490056950}
   - {fileID: 1881978109}
@@ -1363,6 +1384,5 @@ SceneRoots:
   - {fileID: 2123955911}
   - {fileID: 337472257}
   - {fileID: 1655847720}
-  - {fileID: 1508443821}
   - {fileID: 4688766314655077544}
   - {fileID: 1304949623}
