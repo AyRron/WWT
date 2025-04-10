@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,9 +22,9 @@ public class GameManager : MonoBehaviour
 
     public GameObject timerUI;
     private TextMeshProUGUI _timerText;
-    private float _timer = 120f;
+    private float _timer = 12f;
 
-    private bool _gameStarted;
+    private bool _gameRunning;
 
     private void Awake()
     {
@@ -43,13 +44,15 @@ public class GameManager : MonoBehaviour
         StartCoroutine(CountdownBeforeStart());
     }
 
-    void Update()
+    private void Update()
     {
-        if (_gameStarted)
-        {
-            UpdateScoreBare();
-            UpdateTimer();
-        }
+        if (!_gameRunning) return;
+        
+        UpdateScoreBare();
+        UpdateTimer();
+        
+        if (scoreAllies >= 100f) StartCoroutine(EndGame(true));
+        if (scoreEnemies >= 100f) StartCoroutine(EndGame(false));
     }
 
     private void UpdateScoreBare()
@@ -71,13 +74,22 @@ public class GameManager : MonoBehaviour
         {
             _timer = 0;
             _timerText.text = "00:00";
-            EndGame();
+            StartCoroutine(EndGame(false));
         }
     }
 
-    private void EndGame()
+    private IEnumerator EndGame(bool victory)
     {
-        SceneManager.LoadScene("MainMenu");
+        _gameRunning = false;
+        
+        _startTimerText.text = "Terminé";
+        startTimerUI.SetActive(true);
+
+        CrossSceneInformations.Victory = victory;
+
+        yield return new WaitForSeconds(1.5f);
+
+        SceneManager.LoadScene("EndGameScene");
     }
 
     private IEnumerator CountdownBeforeStart()
@@ -97,6 +109,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         
         startTimerUI.SetActive(false);
-        _gameStarted = true;
+        _gameRunning = true;
     }
 }
