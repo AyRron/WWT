@@ -65,7 +65,7 @@ public class MapArea : MonoBehaviour
         foreach (Tank tank in listeTankAreaInside)
         {
             if (gameManager.tanksAllies.Contains(tank)) return CurrentAttacker.Allies;
-            if (gameManager.tanksEnnemies.Contains(tank)) return CurrentAttacker.Ennemies;
+            if (gameManager.tanksEnemies.Contains(tank)) return CurrentAttacker.Ennemies;
         }
         return CurrentAttacker.None;
     }
@@ -106,7 +106,7 @@ public class MapArea : MonoBehaviour
         {
             foreach (Tank tank in listeTankAreaInside)
             {
-                if (ownerZone == OwnerZone.Allies && gameManager.tanksEnnemies.Contains(tank))
+                if (ownerZone == OwnerZone.Allies && gameManager.tanksEnemies.Contains(tank))
                 {
                     currentAttacker = CurrentAttacker.Ennemies;
                 }
@@ -123,9 +123,9 @@ public class MapArea : MonoBehaviour
         if (state == State.Captured)
         {
             if (ownerZone == OwnerZone.Allies) gameManager.scoreAllies += speedScore;
-            else if (ownerZone == OwnerZone.Ennemies) gameManager.scoreEnnemies += speedScore;
+            else if (ownerZone == OwnerZone.Ennemies) gameManager.scoreEnemies += speedScore;
 
-            Debug.Log($"Score allie: {gameManager.scoreAllies}, score ennemies: {gameManager.scoreEnnemies}");
+            Debug.Log($"Score allie: {gameManager.scoreAllies}, score ennemies: {gameManager.scoreEnemies}");
         }
     }
 }
