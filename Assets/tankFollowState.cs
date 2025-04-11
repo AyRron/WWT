@@ -29,7 +29,7 @@ public class tankFollowState : StateMachineBehaviour
         else
         {
             // If there is no other direct command to move
-            if (animator.transform.GetComponent<TankMovement>().isCommandToMove == false)
+            if (animator.transform.GetComponent<TankMovement>().isCommandeToMove == false)
             {
                 agent.SetDestination(attackController.targetToAttack.position);
 

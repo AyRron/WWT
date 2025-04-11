@@ -30,7 +30,7 @@ public class tankAttackState : StateMachineBehaviour
         if (!GameManager.Instance || !GameManager.Instance.gameRunning) return;
 
         // If there is no other direct command to move
-        if (_attackController.targetToAttack != null && animator.transform.GetComponent<TankMovement>().isCommandToMove == false)
+        if (_attackController.targetToAttack != null && animator.transform.GetComponent<TankMovement>().isCommandeToMove == false)
         {
             LookAtTarget();
             _tankShooting.Shoot();

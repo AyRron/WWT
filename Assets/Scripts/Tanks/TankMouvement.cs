@@ -12,7 +12,7 @@ public class TankMovement : MonoBehaviour
     [SerializeField] private NavMeshAgent _agent = null;
 
     public LayerMask ground;
-    public bool isCommandToMove;
+    public bool isCommandeToMove;
 
     private void Start()
     {
@@ -55,5 +55,4 @@ public class TankMovement : MonoBehaviour
             _hasSetDestination = false;
         }
     }
-
 }
