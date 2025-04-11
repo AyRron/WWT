@@ -9,7 +9,7 @@ public class TankHealth : MonoBehaviour
     public Color zeroHealthColor = Color.red;         // The color the health bar will be when on no health.
 
 
-    private float _currentHealth;                      // How much health the tank currently has.
+    public float _currentHealth;                      // How much health the tank currently has.
     private bool _dead;                                // Has the tank been reduced beyond zero health yet?
     
     

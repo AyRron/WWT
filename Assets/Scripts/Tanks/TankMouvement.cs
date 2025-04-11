@@ -14,14 +14,15 @@ public class TankMovement : MonoBehaviour
     public LayerMask ground;
     public bool isCommandToMove;
 
-
     private void Start()
     {
         _agent.updateRotation = true;
     }
 
     // Update is called once per frame
-    private void Update()
+    private bool _hasSetDestination = false;
+
+    void Update()
     {
         if (!GameManager.Instance || !GameManager.Instance.gameRunning)
         {
@@ -33,22 +34,26 @@ public class TankMovement : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1))
         {
-                var maxDistance = Mathf.Infinity;
-                var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
 
-                if (Physics.Raycast(ray, out hit, maxDistance, ground)){
-                    Debug.Log("click");
-                    isCommandToMove = true;
-                    _agent.SetDestination(hit.point);
-                }  
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, ground))
+            {
+                isCommandeToMove = true;
+                _agent.SetDestination(hit.point);
+                _hasSetDestination = true;
+            }
         }
 
-        // V�rification si l'agent a atteint sa destination
-        if (_agent.hasPath == false || _agent.remainingDistance == _agent.stoppingDistance)
+        //_hasSetDestination == true → c’est un mouvement qu’on a déclenché, pas un hasard
+        //_agent.pathPending == false → Unity a fini de calculer le chemin
+        //_agent.remainingDistance <= _agent.stoppingDistance → Le tank est réellement arrivé
+
+        if (_hasSetDestination && !_agent.pathPending && _agent.remainingDistance <= _agent.stoppingDistance)
         {
-            Debug.Log("agent a atteint sa destination");
-            isCommandToMove=false;
+            isCommandeToMove = false;
+            _hasSetDestination = false;
         }
     }
+
 }
