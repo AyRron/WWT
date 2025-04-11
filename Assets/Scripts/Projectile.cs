@@ -15,7 +15,6 @@ public class Projectile : MonoBehaviour
         }
     }
 
-
     private void Explode()
     {
         if (explosionEffect != null)

@@ -762,6 +762,7 @@ MonoBehaviour:
   followStateMaterial: {fileID: 0}
   attackStateMaterial: {fileID: 0}
   tankHealftTarget: {fileID: 0}
+  enemyList: []
   enemyTag: Enemy
 --- !u!95 &7835337735538527758
 Animator:
@@ -839,6 +840,7 @@ MonoBehaviour:
   firePoint: {fileID: 3155253964013459594}
   shootForce: 56.8
   fireRate: 1
+  fireSound: {fileID: 8300000, guid: 36767b566a028d1479721e0d1dbd558c, type: 3}
 --- !u!1001 &1184028501343790410
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -153,3 +153,4 @@ MonoBehaviour:
   explosionForce: 700
   damage: 50
   explosionEffect: {fileID: 1565618090475622490, guid: a1dc862d2fc347340a22ebd0a416bb43, type: 3}
+  explosionSound: {fileID: 8300000, guid: 0517659222f7eb044af418a86fb67ceb, type: 3}
