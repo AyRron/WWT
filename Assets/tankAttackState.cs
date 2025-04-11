@@ -27,9 +27,10 @@ public class tankAttackState : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        if (!GameManager.Instance || !GameManager.Instance.gameRunning) return;
 
         // If there is no other direct command to move
-        if (_attackController.targetToAttack != null && animator.transform.GetComponent<TankMovement>().isCommandeToMove == false)
+        if (_attackController.targetToAttack != null && animator.transform.GetComponent<TankMovement>().isCommandToMove == false)
         {
             LookAtTarget();
             _tankShooting.Shoot();
@@ -73,7 +74,7 @@ public class tankAttackState : StateMachineBehaviour
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _agent.isStopped = false;
     }

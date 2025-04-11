@@ -36,19 +36,21 @@ public class TankSelectionManager : MonoBehaviour
             }
         }
     }
-    void Update()
+
+    private void Update()
     {
-        if (mainCamera == null) return;
+        if (!mainCamera) return;
+        
+        if (!GameManager.Instance || !GameManager.Instance.gameRunning) return;
 
         if (Input.GetMouseButtonDown(0))
         {
-            float maxDistance = Mathf.Infinity;
-            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+            var maxDistance = Mathf.Infinity;
+            var ray = mainCamera.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out hit, maxDistance, clickable))
+            if (Physics.Raycast(ray, out var hit, maxDistance, clickable))
             {
-                if (hit.collider != null && hit.collider.gameObject != null)
+                if (hit.collider && hit.collider.gameObject)
                 {
                     if (Input.GetKey(KeyCode.LeftShift))
                     {

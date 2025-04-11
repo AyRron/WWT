@@ -8,8 +8,10 @@ using DefaultNamespace;
 
 public class GameManager : MonoBehaviour
 {
-    public List<Tank> tanksAllies = new List<Tank>();
-    public List<Tank> tanksEnemies = new List<Tank>();
+    public static GameManager Instance { get; private set; }
+
+    public List<Tank> tanksAllies = new();
+    public List<Tank> tanksEnemies = new();
 
     public Image alliesScore;
     public Image enemiesScore;
@@ -24,14 +26,21 @@ public class GameManager : MonoBehaviour
     private TextMeshProUGUI _timerText;
     private float _timer = 12f;
 
-    private bool _gameRunning;
-
+    public bool gameRunning;
+    private bool _allowPause;
+    
+    public GameObject pauseMenuUI;
+    
     private void Awake()
     {
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+
         if (timerUI != null)
         {
             _timerText = timerUI.GetComponent<TextMeshProUGUI>();
         }
+
         if (startTimerUI != null)
         {
             var text = startTimerUI.transform.Find("StartTimerText")?.gameObject;
@@ -46,11 +55,16 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (!_gameRunning) return;
+        if (_allowPause && Input.GetKeyDown(KeyCode.Escape))
+        {
+            TogglePause();
+        }
         
+        if (!gameRunning) return;
+
         UpdateScoreBare();
         UpdateTimer();
-        
+
         if (scoreAllies >= 100f) StartCoroutine(EndGame(true));
         if (scoreEnemies >= 100f) StartCoroutine(EndGame(false));
     }
@@ -80,8 +94,9 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator EndGame(bool victory)
     {
-        _gameRunning = false;
-        
+        _allowPause = false;
+        gameRunning = false;
+
         _startTimerText.text = "Terminé";
         startTimerUI.SetActive(true);
 
@@ -94,10 +109,10 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator CountdownBeforeStart()
     {
-        int countdown = 3;
-        
+        var countdown = 3;
+
         startTimerUI.SetActive(true);
-        
+
         while (countdown > 0)
         {
             _startTimerText.text = countdown.ToString();
@@ -107,8 +122,31 @@ public class GameManager : MonoBehaviour
 
         _startTimerText.text = "C'est parti!";
         yield return new WaitForSeconds(1f);
-        
+
         startTimerUI.SetActive(false);
-        _gameRunning = true;
+        gameRunning = true;
+        _allowPause = true;
+    }
+
+    private void TogglePause()
+    {
+        pauseMenuUI.SetActive(gameRunning);
+        gameRunning = !gameRunning;
+    }
+    
+    public void PlayGame()
+    {
+        TogglePause();
+    }
+    
+    public void RestartGame()
+    {
+        TogglePause();
+        StartCoroutine(EndGame(false));
+    }
+    
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadScene ("MainMenu");
     }
 }

@@ -10,6 +10,8 @@ public class SimplePatrol : MonoBehaviour
 
     void Update()
     {
+        if (!GameManager.Instance || !GameManager.Instance.gameRunning) return;
+
         timer += Time.deltaTime;
 
         if (timer >= switchDirectionTime)

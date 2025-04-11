@@ -7,15 +7,17 @@ public class tankIdleState : StateMachineBehaviour
     public float followingDistance = 10f;
 
     //OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         attackController = animator.GetComponent<AttackController>();
         attackController.SetIdleMaterial();
     }
 
     //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        if (!GameManager.Instance || !GameManager.Instance.gameRunning) return;
+
         // Check if there is an available target
         if (attackController.targetToAttack != null) {
 

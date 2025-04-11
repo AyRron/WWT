@@ -9,7 +9,7 @@ public class FocusTanks : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public CameraController cameraController; // Référence à CameraController
     private GameObject _highlightArea; // La zone de surbrillance au sol
 
-    void Start()
+    private void Start()
     {
         // Ajouter l'écouteur d'événement de clic au bouton
         GetComponent<UnityEngine.UI.Button>().onClick.AddListener(OnButtonClick);
@@ -33,17 +33,19 @@ public class FocusTanks : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         FocusOnTank();
     }
 
-    void FocusOnTank()
+    private void FocusOnTank()
     {
-        if (tankTransform != null && cameraController != null)
-        {
-            cameraController.player = tankTransform; // Changer le tank ciblé dans CameraController
-            cameraController.isFollowingPlayer = true; // Activer le suivi du tank
-        }
+        if (!GameManager.Instance || !GameManager.Instance.gameRunning) return;
+
+        if (tankTransform == null || cameraController == null) return;
+        cameraController.player = tankTransform; // Changer le tank ciblé dans CameraController
+        cameraController.isFollowingPlayer = true; // Activer le suivi du tank
     }
     
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (!GameManager.Instance || !GameManager.Instance.gameRunning) return;
+
         if (_highlightArea != null)
         {
             _highlightArea.SetActive(true);
@@ -52,6 +54,8 @@ public class FocusTanks : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (!GameManager.Instance || !GameManager.Instance.gameRunning) return;
+
         if (_highlightArea != null)
         {
             _highlightArea.SetActive(false);
