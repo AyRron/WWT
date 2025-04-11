@@ -8,6 +8,14 @@ public class TankShooting : MonoBehaviour
     public float fireRate = 1f;          // Temps entre deux tirs
 
     private float _nextFireTime = 5f;
+    
+    private AudioSource _audioSource;
+    public AudioClip fireSound;
+
+    private void Start()
+    {
+        _audioSource = gameObject.AddComponent<AudioSource>();
+    }
 
     public void Shoot()
     {
@@ -17,7 +25,9 @@ public class TankShooting : MonoBehaviour
 
         var rb = projectile.GetComponent<Rigidbody>();
         if (rb) rb.AddForce(firePoint.forward * shootForce, ForceMode.Impulse);
-            
+        
+        _audioSource.PlayOneShot(fireSound);
+
         _nextFireTime = Time.time + 1f / fireRate;
     }
 }

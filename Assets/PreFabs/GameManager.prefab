@@ -47,10 +47,25 @@ MonoBehaviour:
   tanksAllies:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   tanksEnemies:
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   alliesScore: {fileID: 0}
   enemiesScore: {fileID: 0}
   scoreAllies: 0
   scoreEnemies: 0
+  startTimerUI: {fileID: 0}
   timerUI: {fileID: 0}
+  gameRunning: 0
+  pauseMenuUI: {fileID: 0}
+  pauseSound: {fileID: 8300000, guid: d1b7dffad6f871a4a8c2705433fd22a8, type: 3}
+  unpauseSound: {fileID: 8300000, guid: 3bd0738ad2aeaa64b9d1c44be33608e2, type: 3}
+  countdownBeep: {fileID: 8300000, guid: c2e367cbd5e3096429b2abc76112ec6b, type: 3}
+  countdownFinal: {fileID: 8300000, guid: 87b9e0435d889f24ab36d250dc532411, type: 3}
+  ambiantVoices:
+  - {fileID: 8300000, guid: 8e36aaac47773d94186921ee677300ab, type: 3}
+  - {fileID: 8300000, guid: b39dcb1d91f7c6043a5a551cd792d9d4, type: 3}
+  - {fileID: 8300000, guid: f4c3b96bd148ad444906ae661a7c613f, type: 3}
+  delayBetweenSounds: 17.5

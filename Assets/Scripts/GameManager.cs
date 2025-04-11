@@ -24,12 +24,20 @@ public class GameManager : MonoBehaviour
 
     public GameObject timerUI;
     private TextMeshProUGUI _timerText;
-    private float _timer = 12f;
+    private float _timer = 120f;
 
     public bool gameRunning;
     private bool _allowPause;
     
     public GameObject pauseMenuUI;
+    
+    private AudioSource _audioSource;
+    public AudioClip pauseSound;
+    public AudioClip unpauseSound;
+    public AudioClip countdownBeep;
+    public AudioClip countdownFinal;
+    public List<AudioClip> ambiantVoices;
+    public float delayBetweenSounds = 20f;
     
     private void Awake()
     {
@@ -50,7 +58,9 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        _audioSource = gameObject.AddComponent<AudioSource>();
         StartCoroutine(CountdownBeforeStart());
+        StartCoroutine(PlayRandomSoundRoutine());
     }
 
     private void Update()
@@ -88,7 +98,7 @@ public class GameManager : MonoBehaviour
         {
             _timer = 0;
             _timerText.text = "00:00";
-            StartCoroutine(EndGame(false));
+            StartCoroutine(EndGame(true));
         }
     }
 
@@ -97,6 +107,7 @@ public class GameManager : MonoBehaviour
         _allowPause = false;
         gameRunning = false;
 
+        _audioSource.PlayOneShot(countdownBeep);
         _startTimerText.text = "Terminé";
         startTimerUI.SetActive(true);
 
@@ -116,11 +127,13 @@ public class GameManager : MonoBehaviour
         while (countdown > 0)
         {
             _startTimerText.text = countdown.ToString();
+            _audioSource.PlayOneShot(countdownBeep);
             yield return new WaitForSeconds(1f);
             countdown--;
         }
 
         _startTimerText.text = "C'est parti!";
+        _audioSource.PlayOneShot(countdownFinal);
         yield return new WaitForSeconds(1f);
 
         startTimerUI.SetActive(false);
@@ -130,6 +143,7 @@ public class GameManager : MonoBehaviour
 
     private void TogglePause()
     {
+        _audioSource.PlayOneShot(gameRunning ? pauseSound : unpauseSound);
         pauseMenuUI.SetActive(gameRunning);
         gameRunning = !gameRunning;
     }
@@ -148,5 +162,19 @@ public class GameManager : MonoBehaviour
     public void GoToMainMenu()
     {
         SceneManager.LoadScene ("MainMenu");
+    }
+    
+    private IEnumerator PlayRandomSoundRoutine()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(delayBetweenSounds);
+
+            if (!gameRunning) continue;
+            
+            if (ambiantVoices.Count <= 0) continue;
+            var randomIndex = Random.Range(0, ambiantVoices.Count);
+            _audioSource.PlayOneShot(ambiantVoices[randomIndex]);
+        }
     }
 }
