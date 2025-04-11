@@ -9,8 +9,12 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Explode();
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Player"))
+        {
+            Explode();
+        }
     }
+
 
     private void Explode()
     {
@@ -35,9 +39,9 @@ public class Projectile : MonoBehaviour
             // Calculer les dégâts en fonction de la distance
             var tankHealth = nearbyObject.GetComponent<TankHealth>();
             if (tankHealth == null) continue;
-            
+
             var distance = Vector3.Distance(transform.position, nearbyObject.transform.position);
-            var damageMultiplier = Mathf.Clamp01(1 - (distance / explosionRadius)); 
+            var damageMultiplier = Mathf.Clamp01(1 - (distance / explosionRadius));
             var finalDamage = damage * damageMultiplier;
 
             tankHealth.TakeDamage(finalDamage);

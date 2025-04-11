@@ -611,7 +611,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 8649015326456102449}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 10
+  m_Radius: 5
   m_Speed: 10
   m_Acceleration: 99999
   avoidancePriority: 50
@@ -673,6 +673,7 @@ MonoBehaviour:
   idleStateMaterial: {fileID: 0}
   followStateMaterial: {fileID: 0}
   attackStateMaterial: {fileID: 0}
+  tankHealftTarget: {fileID: 0}
   enemyTag: Enemy
 --- !u!95 &7835337735538527758
 Animator:
@@ -733,6 +734,7 @@ MonoBehaviour:
   slider: {fileID: 6955303925420996704}
   fullHealthColor: {r: 0, g: 1, b: 0, a: 1}
   zeroHealthColor: {r: 1, g: 0, b: 0, a: 1}
+  _currentHealth: 0
 --- !u!114 &4143831065924781371
 MonoBehaviour:
   m_ObjectHideFlags: 0

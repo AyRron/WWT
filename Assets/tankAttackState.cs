@@ -16,7 +16,6 @@ public class tankAttackState : StateMachineBehaviour
     {
         _agent = animator.GetComponent<NavMeshAgent>();
         _attackController = animator.GetComponent<AttackController>();
-        _attackController.SetAttackMaterial();
 
         Transform tankVisual = animator.transform.Find("TankVisual");
         Transform tankBody = tankVisual.Find("Body");
@@ -34,19 +33,13 @@ public class tankAttackState : StateMachineBehaviour
         {
             LookAtTarget();
             _tankShooting.Shoot();
-        }
-        
-        float distanceFromTarget = Vector3.Distance(_attackController.targetToAttack.position, animator.transform.position);
+ 
+            float distanceFromTarget = Vector3.Distance(_attackController.targetToAttack.position, animator.transform.position);
 
-        if (distanceFromTarget > stopAttackingDistance || _attackController.targetToAttack == null)
-        {
-            animator.SetBool("isAttacking", false);
-        }
-
-        if (_attackController.tankHealftTarget._currentHealth < 0)
-        {
-            _attackController.targetToAttack = null;
-            animator.SetBool("isAttacking", false);
+            if (distanceFromTarget > stopAttackingDistance || _attackController.targetToAttack == null)
+            {
+                animator.SetBool("isAttacking", false);
+            }
         }
     }
 
