@@ -9,15 +9,17 @@ public class tankFollowState : StateMachineBehaviour
 
     public float attackingDistance = 10f;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         attackController = animator.GetComponent<AttackController>();
         agent = animator.transform.GetComponent<NavMeshAgent>();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        if (!GameManager.Instance || !GameManager.Instance.gameRunning) return;
+
         // Should Unit Transition to Idle state
         if (attackController.targetToAttack == null)
         {
@@ -36,7 +38,7 @@ public class tankFollowState : StateMachineBehaviour
             }
 
             // If there is no other direct command to move
-            if (animator.transform.GetComponent<TankMovement>().isCommandeToMove == false)
+            if (animator.transform.GetComponent<TankMovement>().isCommandToMove == false)
             {
                 agent.SetDestination(attackController.targetToAttack.position);
 

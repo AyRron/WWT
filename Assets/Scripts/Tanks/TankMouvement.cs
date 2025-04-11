@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.AI;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 public class TankMovement : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class TankMovement : MonoBehaviour
     [SerializeField] private NavMeshAgent _agent = null;
 
     public LayerMask ground;
-    public bool isCommandeToMove;
+    public bool isCommandToMove;
 
 
     private void Start()
@@ -20,31 +21,34 @@ public class TankMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        if (!GameManager.Instance || !GameManager.Instance.gameRunning)
+        {
+            _agent.isStopped = true;  // ArrÃªte le tank quan le jeu est en pause
+            return;
+        }
+
+        _agent.isStopped = false; // Reprend le mouvement si le jeu est actif
+
         if (Input.GetMouseButtonDown(1))
         {
-                float maxDistance = Mathf.Infinity;
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                var maxDistance = Mathf.Infinity;
+                var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
 
                 if (Physics.Raycast(ray, out hit, maxDistance, ground)){
                     Debug.Log("click");
-                    isCommandeToMove = true;
+                    isCommandToMove = true;
                     _agent.SetDestination(hit.point);
                 }  
         }
 
-        // Vérification si l'agent a atteint sa destination
+        // Vï¿½rification si l'agent a atteint sa destination
         if (_agent.hasPath == false || _agent.remainingDistance == _agent.stoppingDistance)
         {
             Debug.Log("agent a atteint sa destination");
-            isCommandeToMove=false;
+            isCommandToMove=false;
         }
-
-
-
     }
-
-    
 }

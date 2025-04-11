@@ -11,25 +11,26 @@ namespace Script.Script_Camera
         public float moveSpeed = 10.0f; // Vitesse de déplacement de la caméra
         public bool isFollowingPlayer = true;
 
-        void Start()
+        private void Start()
         {
             // Chercher automatiquement le tank "Player" au démarrage
-            if (player == null)
+            if (player) return;
+
+            var playerObj = GameObject.FindGameObjectWithTag("Player");
+            if (playerObj)
             {
-                GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-                if (playerObj != null)
-                {
-                    player = playerObj.transform;
-                }
-                else
-                {
-                    Debug.LogWarning("Aucun objet avec le tag 'Player' n'a été trouvé !");
-                }
+                player = playerObj.transform;
+            }
+            else
+            {
+                Debug.LogWarning("Aucun objet avec le tag 'Player' n'a été trouvé !");
             }
         }
 
-        void Update()
+        private void Update()
         {
+            if (!GameManager.Instance || !GameManager.Instance.gameRunning) return;
+
             // Refocus sur le tank avec la touche Espace
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -61,14 +62,14 @@ namespace Script.Script_Camera
             }
         }
 
-        void FollowPlayer()
+        private void FollowPlayer()
         {
-            if (player != null)
+            if (player)
             {
                 Vector3 desiredPosition = player.position + offset;
                 Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
                 transform.position = smoothedPosition;
-                
+
                 transform.LookAt(player);
             }
             else
@@ -77,7 +78,7 @@ namespace Script.Script_Camera
             }
         }
 
-        void FreeMove()
+        private void FreeMove()
         {
             Vector3 moveDirection = Vector3.zero;
 
@@ -85,14 +86,17 @@ namespace Script.Script_Camera
             {
                 moveDirection += Vector3.right;
             }
+
             if (Input.mousePosition.x <= edgeSize)
             {
                 moveDirection += Vector3.left;
             }
+
             if (Input.mousePosition.y >= Screen.height - edgeSize)
             {
                 moveDirection += Vector3.forward;
             }
+
             if (Input.mousePosition.y <= edgeSize)
             {
                 moveDirection += Vector3.back;
