@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+
 
 public class TankHealth : MonoBehaviour
 {
@@ -11,8 +13,8 @@ public class TankHealth : MonoBehaviour
 
     public float _currentHealth;                      // How much health the tank currently has.
     private bool _dead;                                // Has the tank been reduced beyond zero health yet?
-    
-    
+
+
     private void Start()
     {
         if (slider == null)
@@ -30,41 +32,48 @@ public class TankHealth : MonoBehaviour
 
         SetHealthUI();
     }
-    
-    
+
+
     private void OnEnable()
     {
         _currentHealth = startingHealth;
         _dead = false;
+        
 
         SetHealthUI();
     }
 
 
-    public void TakeDamage (float amount)
+    public void TakeDamage(float amount)
     {
+        Debug.Log("Touché");
+        if(gameObject.CompareTag("Enemy")){
+            Debug.Log("Touché enemy");
+        }
         _currentHealth -= amount;
 
-        SetHealthUI ();
+        SetHealthUI();
 
         if (_currentHealth <= 0f && !_dead)
         {
-            OnDeath ();
+            OnDeath();
         }
     }
 
 
-    private void SetHealthUI ()
+    private void SetHealthUI()
     {
         slider.value = _currentHealth;
         var fillImage = slider.fillRect.GetComponent<Image>();
-        fillImage.color = Color.Lerp (zeroHealthColor, fullHealthColor, _currentHealth / startingHealth);
+        fillImage.color = Color.Lerp(zeroHealthColor, fullHealthColor, _currentHealth / startingHealth);
     }
 
 
-    private void OnDeath ()
+    private void OnDeath()
     {
         _dead = true;
-        gameObject.SetActive (false);
+        TankSpawnerManager.Instance.RespawnTank(gameObject, 5f);
+        gameObject.SetActive(false);
     }
+
 }

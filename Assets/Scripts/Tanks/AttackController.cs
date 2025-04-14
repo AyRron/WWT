@@ -11,6 +11,17 @@ public class AttackController : MonoBehaviour
     public List<GameObject> enemyList = new List<GameObject>();
     public string enemyTag;
 
+    private void OnEnable()
+    {
+        // Réinitialise la cible
+        targetToAttack = null;
+        tankHealftTarget = null;
+
+        // Nettoie la liste des ennemis
+        enemyList.Clear();
+    }
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(enemyTag))

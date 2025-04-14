@@ -19,6 +19,17 @@ public class TankMovement : MonoBehaviour
         _agent.updateRotation = true;
     }
 
+    private void OnEnable()
+    {
+        if (_agent != null && _agent.isOnNavMesh)
+        {
+            _agent.ResetPath();
+            _hasSetDestination = false;
+            isCommandeToMove = false;
+        }
+    }
+
+
     // Update is called once per frame
     private bool _hasSetDestination = false;
 

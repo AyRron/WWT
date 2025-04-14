@@ -636,7 +636,7 @@ GameObject:
   - component: {fileID: -5160618370452987908}
   - component: {fileID: 4143831065924781371}
   m_Layer: 6
-  m_Name: Tank
+  m_Name: TankPlayer
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

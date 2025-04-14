@@ -2,50 +2,44 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public float explosionRadius = 15f;    // Rayon de l'explosion
-    public float explosionForce = 700f;   // Force de l'explosion
-    public float damage = 40f;            // Dégâts infligés aux tanks
-    public GameObject explosionEffect;    // Effet visuel d'explosion
+    public float damage = 40f;               // Dégâts de base
+    public GameObject explosionEffect;       // Effet visuel d'explosion
+    public float selfDestructDelay = 3f;     // Auto-destruction
+
+    private void Start()
+    {
+        Destroy(gameObject, selfDestructDelay);
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Player"))
-        {
-            Explode();
-        }
-    }
+        GameObject hitObject = collision.gameObject;
 
-    private void Explode()
-    {
-        if (explosionEffect != null)
+        if (hitObject.CompareTag("Enemy") || hitObject.CompareTag("Player"))
         {
-            var explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
-            Destroy(explosion, 2f);
-        }
-
-        // Trouver tous les objets dans le rayon de l'explosion
-        var colliders = Physics.OverlapSphere(transform.position, explosionRadius);
-
-        foreach (var nearbyObject in colliders)
-        {
-            // Appliquer une force d'explosion aux objets physiques
-            var rb = nearbyObject.GetComponent<Rigidbody>();
-            if (rb != null)
+            // Effet d'explosion
+            if (explosionEffect != null)
             {
-                rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
+                var explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
+                Destroy(explosion, 2f);
             }
 
-            // Calculer les dégâts en fonction de la distance
-            var tankHealth = nearbyObject.GetComponent<TankHealth>();
-            if (tankHealth == null) continue;
+            // Essayer de trouver le script de santé
+            var tankHealth = hitObject.GetComponent<TankHealth>()
+                ?? hitObject.GetComponentInParent<TankHealth>()
+                ?? hitObject.GetComponentInChildren<TankHealth>();
 
-            var distance = Vector3.Distance(transform.position, nearbyObject.transform.position);
-            var damageMultiplier = Mathf.Clamp01(1 - (distance / explosionRadius));
-            var finalDamage = damage * damageMultiplier;
+            if (tankHealth != null)
+            {
+                float randomDamage = Random.Range(5f, 15f);
+                tankHealth.TakeDamage(randomDamage);
+            }
+            else
+            {
+                Debug.LogWarning($"Aucun TankHealth trouvé sur {hitObject.name}", hitObject);
+            }
 
-            tankHealth.TakeDamage(finalDamage);
+            Destroy(gameObject);
         }
-
-        Destroy(gameObject);
     }
 }
