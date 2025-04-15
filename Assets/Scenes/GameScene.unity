@@ -417,6 +417,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 522209661172696972, guid: 29009b5c0078b3344b889d2c8ceb24ba, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 2135562740}
     - target: {fileID: 858098564728516566, guid: 29009b5c0078b3344b889d2c8ceb24ba, type: 3}
       propertyPath: m_LocalPosition.x
       value: -80.6
@@ -479,6 +483,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 522209661172696972, guid: 29009b5c0078b3344b889d2c8ceb24ba, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 2135562740}
     - target: {fileID: 858098564728516566, guid: 29009b5c0078b3344b889d2c8ceb24ba, type: 3}
       propertyPath: m_LocalPosition.x
       value: -267
@@ -615,6 +623,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 522209661172696972, guid: 29009b5c0078b3344b889d2c8ceb24ba, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 2135562740}
     - target: {fileID: 858098564728516566, guid: 29009b5c0078b3344b889d2c8ceb24ba, type: 3}
       propertyPath: m_LocalPosition.x
       value: -417.5
