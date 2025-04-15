@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 7282227266644438869}
   - component: {fileID: 4538624027859719106}
   - component: {fileID: 6328141246815067589}
-  - component: {fileID: 3135857621760619176}
+  - component: {fileID: 1317972640173318594}
   m_Layer: 0
   m_Name: TankEnemy
   m_TagString: Enemy
@@ -408,7 +408,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4592158030177821769}
   serializedVersion: 4
-  m_Mass: 1000
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -422,21 +422,21 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &3135857621760619176
+--- !u!114 &1317972640173318594
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4592158030177821769}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c4b166e5c26398498bfec1583658e16, type: 3}
+  m_Script: {fileID: 11500000, guid: 4453072469edac647b2631f6bd9b1401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _agent: {fileID: 8529657078666757884}
@@ -444,6 +444,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   isCommandeToMove: 0
+  areaPoints: []
 --- !u!1 &5968687631708551779
 GameObject:
   m_ObjectHideFlags: 0

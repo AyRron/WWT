@@ -29,20 +29,41 @@ public class tankAttackState : StateMachineBehaviour
     {
         if (!GameManager.Instance || !GameManager.Instance.gameRunning) return;
 
-        // If there is no other direct command to move
-        if (_attackController.targetToAttack != null && animator.transform.GetComponent<TankMovement>().isCommandeToMove == false)
+        if (_attackController.targetToAttack != null)
         {
-            LookAtTarget();
-            _tankShooting.Shoot();
- 
-            float distanceFromTarget = Vector3.Distance(_attackController.targetToAttack.position, animator.transform.position);
+            bool hasCommandeToMove = false;
 
-            if (distanceFromTarget > stopAttackingDistance || _attackController.targetToAttack == null)
+            // Vérifie s’il y a un TankMovement (joueur)
+            TankMovement playerMovement = animator.transform.GetComponent<TankMovement>();
+            if (playerMovement != null)
             {
-                animator.SetBool("isAttacking", false);
+                hasCommandeToMove = playerMovement.isCommandeToMove;
+            }
+            else
+            {
+                // Sinon, vérifie s’il y a un TankEnemyMovement (IA)
+                TankEnemyMovement enemyMovement = animator.transform.GetComponent<TankEnemyMovement>();
+                if (enemyMovement != null)
+                {
+                    hasCommandeToMove = enemyMovement.isCommandeToMove;
+                }
+            }
+
+            if (!hasCommandeToMove)
+            {
+                LookAtTarget();
+                _tankShooting.Shoot();
+
+                float distanceFromTarget = Vector3.Distance(_attackController.targetToAttack.position, animator.transform.position);
+
+                if (distanceFromTarget > stopAttackingDistance || _attackController.targetToAttack == null)
+                {
+                    animator.SetBool("isAttacking", false);
+                }
             }
         }
     }
+
 
 
     private void LookAtTarget()
