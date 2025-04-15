@@ -10,17 +10,17 @@ public class MapAreaCollider : MonoBehaviour
     private void OnTriggerEnter(Collider collider)
     {
         Debug.Log("Something has trigger the area");
-        if (collider.TryGetComponent<Tank>(out Tank playerArea))
+        if (collider.TryGetComponent<TankColliderZone>(out TankColliderZone playerArea))
         {
-            playerAreaList.Add(playerArea);
+            playerAreaList.Add(playerArea.GetComponentInParent<Tank>());
         }
     }
 
     private void OnTriggerExit(Collider collider)
     {
-        if(collider.TryGetComponent<Tank>(out Tank playerArea))
+        if(collider.TryGetComponent<TankColliderZone>(out TankColliderZone playerArea))
         {
-            playerAreaList.Remove(playerArea);
+            playerAreaList.Remove(playerArea.GetComponentInParent<Tank>());
         }
         
     }
