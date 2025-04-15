@@ -3,23 +3,20 @@ using System.Collections.Generic;
 
 public class EnemyTankController : MonoBehaviour
 {
-    public float moveSpeed = 5f;
+    public float moveSpeed = 10f;
     public float turnSpeed = 120f;
-    public float stoppingDistance = 0.1f;
+    public float stoppingDistance = 10f;
     public float targetReachedDistance = 1f; // Distance à laquelle on considère avoir atteint la cible
     public Transform target;
     public Pathfinder pathfinder;
-    public float pathUpdateRate = 0.5f;
+    public float pathUpdateRate = 10f;
     public float minDistanceToUpdatePath = 2f; // Distance minimale pour mettre à jour le chemin
     public float rotationThreshold = 10f; // Angle maximum de rotation avant de commencer à avancer
     public float tankRadius = 1f; // Rayon du tank pour la vérification des collisions
     public Vector3 tankSize = new Vector3(2f, 1f, 3f); // Taille du tank (largeur, hauteur, longueur)
     public float safetyMargin = 0.5f; // Marge de sécurité pour éviter les collisions
-    public float obstacleAvoidanceRadius = 2f; // Rayon pour détecter les obstacles à éviter
-    public float groundOffset = 0.1f; // Offset pour maintenir le tank au-dessus du sol
-    public float stuckThreshold = 0.1f; // Distance minimale pour considérer que le tank a bougé
-    public float maxStuckTime = 3f; // Temps maximum avant de considérer le tank comme bloqué
-    public float unstuckMoveDistance = 3f; // Distance de déplacement pour les tentatives de déblocage
+    public float obstacleAvoidanceRadius = 5f; // Rayon pour détecter les obstacles à éviter
+    public float groundOffset = 0.2f; // Offset pour maintenir le tank au-dessus du sol
 
     private List<Vector3> path;
     private int currentPathIndex;
@@ -30,12 +27,6 @@ public class EnemyTankController : MonoBehaviour
     private Vector3 lastValidPosition;
     private float initialY; // Position Y initiale du tank
     private Vector3 lastPosition; // Dernière position du tank
-    private float stuckTime = 0f; // Temps pendant lequel le tank est bloqué
-    private bool isStuck = false; // Indique si le tank est bloqué
-    private bool isUnstucking = false; // Indique si le tank est en train de se débloquer
-    private float unstuckTimer = 0f; // Timer pour les actions de déblocage
-    private float unstuckActionDuration = 1f; // Durée d'une action de déblocage
-    private Vector3 unstuckDirection; // Direction pour se débloquer
 
     void Start()
     {
@@ -163,23 +154,11 @@ public class EnemyTankController : MonoBehaviour
         if (distanceToTarget <= targetReachedDistance)
         {
             isRotating = false;
-            isStuck = false;
-            isUnstucking = false;
-            return;
-        }
-
-        // Vérifier si le tank est bloqué
-        CheckIfStuck();
-
-        // Si le tank est en train de se débloquer, continuer l'action de déblocage
-        if (isUnstucking)
-        {
-            ContinueUnstuckAction();
             return;
         }
 
         // Mise à jour du chemin si nécessaire
-        if (Time.time >= nextPathUpdate || path == null || path.Count == 0 || isStuck)
+        if (Time.time >= nextPathUpdate || path == null || path.Count == 0)
         {
             UpdatePath();
         }
@@ -355,84 +334,6 @@ public class EnemyTankController : MonoBehaviour
         // Si aucune direction n'est accessible, forcer une mise à jour du chemin
         nextPathUpdate = 0;
     }
+    
 
-    // Vérifie si le tank est bloqué
-    void CheckIfStuck()
-    {
-        float distanceMoved = Vector3.Distance(transform.position, lastPosition);
-        
-        if (distanceMoved < stuckThreshold)
-        {
-            stuckTime += Time.deltaTime;
-            
-            if (stuckTime > maxStuckTime && !isStuck && !isUnstucking)
-            {
-                isStuck = true;
-                
-                // Démarrer une tentative de déblocage
-                StartUnstuck();
-            }
-        }
-        else
-        {
-            // Le tank a bougé, réinitialiser les compteurs
-            stuckTime = 0f;
-            isStuck = false;
-        }
-        
-        // Mettre à jour la dernière position
-        lastPosition = transform.position;
-    }
-    
-    // Démarre une tentative de déblocage
-    void StartUnstuck()
-    {
-        // Choisir une direction aléatoire pour se débloquer
-        float randomAngle = Random.Range(0f, 360f);
-        unstuckDirection = Quaternion.Euler(0, randomAngle, 0) * Vector3.forward;
-        
-        // Démarrer l'action de déblocage
-        isUnstucking = true;
-        unstuckTimer = 0f;
-        
-        // Forcer une mise à jour du chemin après la tentative de déblocage
-        nextPathUpdate = Time.time + unstuckActionDuration + 0.5f;
-    }
-    
-    // Continue l'action de déblocage en cours
-    void ContinueUnstuckAction()
-    {
-        unstuckTimer += Time.deltaTime;
-        
-        // Déplacer le tank dans la direction choisie
-        if (unstuckTimer <= unstuckActionDuration)
-        {
-            // Calculer la position cible
-            Vector3 targetPosition = transform.position + unstuckDirection * unstuckMoveDistance;
-            targetPosition.y = initialY;
-            
-            // Déplacer progressivement vers la position cible
-            float progress = unstuckTimer / unstuckActionDuration;
-            Vector3 newPosition = Vector3.Lerp(transform.position, targetPosition, progress);
-            
-            // Vérifier si la position est accessible
-            if (pathfinder.grid.IsPositionWalkable(newPosition, tankSize, transform.rotation))
-            {
-                transform.position = newPosition;
-            }
-        }
-        
-        // Terminer l'action de déblocage après la durée prévue
-        if (unstuckTimer >= unstuckActionDuration)
-        {
-            isUnstucking = false;
-            
-            // Vérifier si le tank a réussi à se débloquer
-            if (Vector3.Distance(transform.position, lastPosition) > stuckThreshold * 2)
-            {
-                isStuck = false;
-                stuckTime = 0f;
-            }
-        }
-    }
 } 
