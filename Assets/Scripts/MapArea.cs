@@ -26,6 +26,8 @@ public class MapArea : MonoBehaviour
 
     public GameManager gameManager;
 
+    public GameObject linesZone; // pour les couleurs de la zone
+
     private void Awake()
     {
         mapAreaColliderListe = new List<MapAreaCollider>();
@@ -36,6 +38,8 @@ public class MapArea : MonoBehaviour
         }
 
         InvokeRepeating(nameof(IncreaseScore), 1f, 1f);
+
+        SetZoneColor(Color.gray);
     }
 
     private void Update()
@@ -54,40 +58,59 @@ public class MapArea : MonoBehaviour
             foreach (Tank tankInsideArea in mapAreaCollider.GetPlayerList())
             {
                 listeTankAreaInside.Add(tankInsideArea);
+                
             }
         }
 
-        currentAttacker = listeTankAreaInside.Count > 0 ? GetCurrentAttacker() : CurrentAttacker.None;
-    }
+        int alliesCount = 0;
+        int enemiesCount = 0;
 
-    private CurrentAttacker GetCurrentAttacker()
-    {
         foreach (Tank tank in listeTankAreaInside)
         {
-            if (gameManager.tanksAllies.Contains(tank)) return CurrentAttacker.Allies;
-            if (gameManager.tanksEnemies.Contains(tank)) return CurrentAttacker.Ennemies;
+            switch (tank.tag)
+            {
+                case "Player":
+                    alliesCount++;
+                    break;
+                case "Enemy":
+                    enemiesCount++;
+                    break;
+            }
         }
-        return CurrentAttacker.None;
+
+        currentAttacker = alliesCount > enemiesCount
+            ? CurrentAttacker.Allies
+            : enemiesCount > alliesCount
+                ? CurrentAttacker.Ennemies
+                : CurrentAttacker.None;
+
     }
 
     private void ProcessCaptureProgress()
     {
-        if (currentAttacker == CurrentAttacker.Allies)
+        if(currentAttacker != CurrentAttacker.None)
         {
-            propgressAllies += progressSpead * Time.deltaTime;
+            if (currentAttacker == CurrentAttacker.Allies)
+            {
+                propgressAllies += progressSpead * Time.deltaTime;
+                Debug.Log("Alliées dans la zone, capture... : " + propgressAllies);
+            }
+            else if (currentAttacker == CurrentAttacker.Ennemies)
+            {
+                propgressEnnemie += progressSpead * Time.deltaTime;
+            }
         }
-        else if (currentAttacker == CurrentAttacker.Ennemies)
-        {
-            propgressEnnemie += progressSpead * Time.deltaTime;
-        }
+
 
         if (propgressAllies >= timeForCapture)
         {
             CaptureZone(OwnerZone.Allies);
+            SetZoneColor(Color.green);
         }
         else if (propgressEnnemie >= timeForCapture)
         {
             CaptureZone(OwnerZone.Ennemies);
+            SetZoneColor(Color.red);
         }
     }
 
@@ -106,11 +129,11 @@ public class MapArea : MonoBehaviour
         {
             foreach (Tank tank in listeTankAreaInside)
             {
-                if (ownerZone == OwnerZone.Allies && gameManager.tanksEnemies.Contains(tank))
+                if (ownerZone == OwnerZone.Allies && tank.CompareTag("Enemy"))
                 {
                     currentAttacker = CurrentAttacker.Ennemies;
                 }
-                else if (ownerZone == OwnerZone.Ennemies && gameManager.tanksAllies.Contains(tank))
+                else if (ownerZone == OwnerZone.Ennemies && tank.CompareTag("Player"))
                 {
                     currentAttacker = CurrentAttacker.Allies;
                 }
@@ -124,8 +147,20 @@ public class MapArea : MonoBehaviour
         {
             if (ownerZone == OwnerZone.Allies) gameManager.scoreAllies += speedScore;
             else if (ownerZone == OwnerZone.Ennemies) gameManager.scoreEnemies += speedScore;
+        }
+    }
 
-            Debug.Log($"Score allie: {gameManager.scoreAllies}, score ennemies: {gameManager.scoreEnemies}");
+    public void SetZoneColor(Color newColor)
+    {
+        if (linesZone == null) return;
+
+        foreach (Transform line in linesZone.transform)
+        {
+            Renderer renderer = line.GetComponent<Renderer>();
+            if (renderer != null)
+            {
+                renderer.material.color = newColor;
+            }
         }
     }
 }
