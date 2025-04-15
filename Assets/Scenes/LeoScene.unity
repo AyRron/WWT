@@ -133,7 +133,7 @@ PrefabInstance:
       objectReference: {fileID: 2135562740}
     - target: {fileID: 858098564728516566, guid: 29009b5c0078b3344b889d2c8ceb24ba, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 120.3
+      value: -81.4
       objectReference: {fileID: 0}
     - target: {fileID: 858098564728516566, guid: 29009b5c0078b3344b889d2c8ceb24ba, type: 3}
       propertyPath: m_LocalPosition.y
@@ -141,7 +141,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 858098564728516566, guid: 29009b5c0078b3344b889d2c8ceb24ba, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 17.78
+      value: -359.2
       objectReference: {fileID: 0}
     - target: {fileID: 858098564728516566, guid: 29009b5c0078b3344b889d2c8ceb24ba, type: 3}
       propertyPath: m_LocalRotation.w
@@ -173,7 +173,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6958599352172918281, guid: 29009b5c0078b3344b889d2c8ceb24ba, type: 3}
       propertyPath: m_Name
-      value: Alpha
+      value: Zone Alpha
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -269,17 +269,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2325245556455247860, guid: 12bcb7b4a81d796438175bd41833211e, type: 3}
-      propertyPath: tankTransform
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2325245556455247860, guid: 12bcb7b4a81d796438175bd41833211e, type: 3}
       propertyPath: cameraController
       value: 
       objectReference: {fileID: 649932076}
-    - target: {fileID: 2762514522885201989, guid: 12bcb7b4a81d796438175bd41833211e, type: 3}
-      propertyPath: tankTransform
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 2762514522885201989, guid: 12bcb7b4a81d796438175bd41833211e, type: 3}
       propertyPath: cameraController
       value: 
@@ -299,10 +291,6 @@ PrefabInstance:
     - target: {fileID: 5987664072708335492, guid: 12bcb7b4a81d796438175bd41833211e, type: 3}
       propertyPath: m_Name
       value: interface new
-      objectReference: {fileID: 0}
-    - target: {fileID: 6425355165453548973, guid: 12bcb7b4a81d796438175bd41833211e, type: 3}
-      propertyPath: tankTransform
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6425355165453548973, guid: 12bcb7b4a81d796438175bd41833211e, type: 3}
       propertyPath: cameraController
@@ -369,10 +357,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7759233937365847569, guid: 4b58188a350b70f46af77f788a1919df, type: 3}
-      propertyPath: m_NavMeshData
-      value: 
-      objectReference: {fileID: 23800000, guid: 6fc11fa4e4e676140a1e2af9fed704b2, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -545,7 +529,7 @@ PrefabInstance:
       objectReference: {fileID: 2135562740}
     - target: {fileID: 858098564728516566, guid: 29009b5c0078b3344b889d2c8ceb24ba, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -41.6
+      value: -267
       objectReference: {fileID: 0}
     - target: {fileID: 858098564728516566, guid: 29009b5c0078b3344b889d2c8ceb24ba, type: 3}
       propertyPath: m_LocalPosition.y
@@ -553,7 +537,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 858098564728516566, guid: 29009b5c0078b3344b889d2c8ceb24ba, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 17.78
+      value: -285.3
       objectReference: {fileID: 0}
     - target: {fileID: 858098564728516566, guid: 29009b5c0078b3344b889d2c8ceb24ba, type: 3}
       propertyPath: m_LocalRotation.w
@@ -585,7 +569,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6958599352172918281, guid: 29009b5c0078b3344b889d2c8ceb24ba, type: 3}
       propertyPath: m_Name
-      value: Charlie
+      value: Zone Charlie
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -606,7 +590,7 @@ PrefabInstance:
       objectReference: {fileID: 2135562740}
     - target: {fileID: 858098564728516566, guid: 29009b5c0078b3344b889d2c8ceb24ba, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -170.8
+      value: -425.5
       objectReference: {fileID: 0}
     - target: {fileID: 858098564728516566, guid: 29009b5c0078b3344b889d2c8ceb24ba, type: 3}
       propertyPath: m_LocalPosition.y
@@ -614,7 +598,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 858098564728516566, guid: 29009b5c0078b3344b889d2c8ceb24ba, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 37.2
+      value: -185.2
       objectReference: {fileID: 0}
     - target: {fileID: 858098564728516566, guid: 29009b5c0078b3344b889d2c8ceb24ba, type: 3}
       propertyPath: m_LocalRotation.w
@@ -646,7 +630,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6958599352172918281, guid: 29009b5c0078b3344b889d2c8ceb24ba, type: 3}
       propertyPath: m_Name
-      value: Beta
+      value: Zone Beta
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -859,10 +843,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 35722296603978417, guid: 99d69222eb6fb4145b47d75c26e84075, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 294.7
-      objectReference: {fileID: 0}
     - target: {fileID: 1350991763657168832, guid: 99d69222eb6fb4145b47d75c26e84075, type: 3}
       propertyPath: m_LocalPosition.x
       value: -82.27277
@@ -903,34 +883,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1984587838987431493, guid: 99d69222eb6fb4145b47d75c26e84075, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 274.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4838020178534679247, guid: 99d69222eb6fb4145b47d75c26e84075, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 299.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6243441705769879635, guid: 99d69222eb6fb4145b47d75c26e84075, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -172.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6243441705769879635, guid: 99d69222eb6fb4145b47d75c26e84075, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6792165942637008276, guid: 99d69222eb6fb4145b47d75c26e84075, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -171.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8424104472904022012, guid: 99d69222eb6fb4145b47d75c26e84075, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -179.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8424104472904022012, guid: 99d69222eb6fb4145b47d75c26e84075, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 60.5
-      objectReference: {fileID: 0}
     - target: {fileID: 9064239051083553213, guid: 99d69222eb6fb4145b47d75c26e84075, type: 3}
       propertyPath: m_Name
       value: TankSpawner
@@ -950,7 +902,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 60584963221865927, guid: 411f0f72b58cde449b17074db8908493, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -287.7
       objectReference: {fileID: 0}
     - target: {fileID: 60584963221865927, guid: 411f0f72b58cde449b17074db8908493, type: 3}
       propertyPath: m_LocalPosition.y
@@ -958,7 +910,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 60584963221865927, guid: 411f0f72b58cde449b17074db8908493, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -30
+      value: -370
       objectReference: {fileID: 0}
     - target: {fileID: 60584963221865927, guid: 411f0f72b58cde449b17074db8908493, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1085,30 +1037,6 @@ PrefabInstance:
       propertyPath: startTimerUI
       value: 
       objectReference: {fileID: 521832828}
-    - target: {fileID: 2593557884645029267, guid: 9009e4b71ce72da4ab0c941e98ce55ef, type: 3}
-      propertyPath: 'tanksAllies.Array.data[0]'
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2593557884645029267, guid: 9009e4b71ce72da4ab0c941e98ce55ef, type: 3}
-      propertyPath: 'tanksAllies.Array.data[1]'
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2593557884645029267, guid: 9009e4b71ce72da4ab0c941e98ce55ef, type: 3}
-      propertyPath: 'tanksAllies.Array.data[2]'
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2593557884645029267, guid: 9009e4b71ce72da4ab0c941e98ce55ef, type: 3}
-      propertyPath: 'tanksEnemies.Array.data[0]'
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2593557884645029267, guid: 9009e4b71ce72da4ab0c941e98ce55ef, type: 3}
-      propertyPath: 'tanksEnemies.Array.data[1]'
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2593557884645029267, guid: 9009e4b71ce72da4ab0c941e98ce55ef, type: 3}
-      propertyPath: 'tanksEnemies.Array.data[2]'
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

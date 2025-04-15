@@ -16,9 +16,9 @@ public class MapArea : MonoBehaviour
     public float propgressAllies = 0f;
     public float propgressEnnemie = 0f;
     private float progressSpead = 1f;
-    private float timeForCapture = 2f;
+    private float timeForCapture = 5f;
 
-    private float speedScore = 1.5f;
+    private float speedScore = 0.5f;
 
     private State state = State.Neutral;
     private OwnerZone ownerZone = OwnerZone.None;
