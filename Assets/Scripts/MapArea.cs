@@ -4,7 +4,7 @@ using System;
 
 public class MapArea : MonoBehaviour
 {
-    public enum State { Neutral, Captured }
+    public enum State { Neutral, OnCaptured, Captured }
     public enum CurrentAttacker { Allies, Ennemies, None }
     public enum OwnerZone { Allies, Ennemies, None }
 
@@ -88,17 +88,26 @@ public class MapArea : MonoBehaviour
 
     private void ProcessCaptureProgress()
     {
-        if(currentAttacker != CurrentAttacker.None)
+        bool progressing = false;
+        if (currentAttacker != CurrentAttacker.None)
         {
             if (currentAttacker == CurrentAttacker.Allies)
             {
                 propgressAllies += progressSpead * Time.deltaTime;
-                Debug.Log("Alliées dans la zone, capture... : " + propgressAllies);
+                progressing = true;
             }
             else if (currentAttacker == CurrentAttacker.Ennemies)
             {
                 propgressEnnemie += progressSpead * Time.deltaTime;
+                progressing = true;
             }
+        }
+
+        // Changement d'état visuel si progression mais pas encore capturé
+        if (progressing && state != State.Captured && state != State.OnCaptured)
+        {
+            state = State.OnCaptured;
+            SetZoneColor(Color.Lerp(Color.gray, Color.yellow, 0.5f));
         }
 
 
