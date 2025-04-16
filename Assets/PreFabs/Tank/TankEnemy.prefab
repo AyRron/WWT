@@ -211,6 +211,8 @@ GameObject:
   - component: {fileID: 4538624027859719106}
   - component: {fileID: 6328141246815067589}
   - component: {fileID: 1317972640173318594}
+  - component: {fileID: 3135857621760619176}
+  - component: {fileID: 5453525558733004031}
   m_Layer: 0
   m_Name: TankEnemy
   m_TagString: Enemy
@@ -445,6 +447,21 @@ MonoBehaviour:
     m_Bits: 0
   isCommandeToMove: 0
   areaPoints: []
+--- !u!114 &5453525558733004031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4592158030177821769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 985add12ee4836e40b7241671b1d892c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fogWar: {fileID: 0}
+  visibility: 1
+  additionalRadius: 0
 --- !u!1 &5968687631708551779
 GameObject:
   m_ObjectHideFlags: 0

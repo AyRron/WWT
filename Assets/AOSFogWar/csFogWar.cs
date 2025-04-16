@@ -15,6 +15,7 @@ using System.Linq;                  // Enumerable
 using System.Collections.Generic;   // List
 using UnityEngine;                  // Monobehaviour
 using UnityEditor;                  // Handles
+using System.Collections;
 
 
 
@@ -276,7 +277,6 @@ namespace FischlWorks_FogWar
         // --- --- ---
 
 
-
         private void Start()
         {
             CheckProperties();
@@ -309,13 +309,36 @@ namespace FischlWorks_FogWar
             ForceUpdateFog();
         }
 
+        private void SetListFogRevealers()
+        {
+            GameObject[] playerTanks = GameObject.FindGameObjectsWithTag("Player");
+            foreach (GameObject tankGO in playerTanks)
+            {
+                Transform tankTransform = tankGO.transform;
+
+                // Création d'un nouveau FogRevealer avec sightRange par défaut, tu peux le personnaliser
+                FogRevealer newRevealer = new FogRevealer(tankTransform, 50, true);
+                _FogRevealers.Add(newRevealer);
+
+                Debug.Log("FogRevealer ajouté pour le tank : " + tankGO.name);
+            }
+        }
+
+        private void UpdateListRevealers()
+        {
+            if(_FogRevealers.Count == 0)
+            {
+                // on ajoute les tanks
+                SetListFogRevealers();
+            }
+        }
 
 
         private void Update()
         {
+            UpdateListRevealers();
             UpdateFog();
         }
-
 
 
         // --- --- ---
