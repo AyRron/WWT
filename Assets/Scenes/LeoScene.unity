@@ -269,9 +269,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2325245556455247860, guid: 12bcb7b4a81d796438175bd41833211e, type: 3}
+      propertyPath: targetTankId
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2325245556455247860, guid: 12bcb7b4a81d796438175bd41833211e, type: 3}
       propertyPath: cameraController
       value: 
       objectReference: {fileID: 649932076}
+    - target: {fileID: 2762514522885201989, guid: 12bcb7b4a81d796438175bd41833211e, type: 3}
+      propertyPath: targetTankId
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2762514522885201989, guid: 12bcb7b4a81d796438175bd41833211e, type: 3}
       propertyPath: cameraController
       value: 
