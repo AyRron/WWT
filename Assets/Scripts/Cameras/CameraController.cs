@@ -10,7 +10,7 @@ namespace Script.Script_Camera
         public float smoothSpeed = 0.125f;
         public Vector3 offset;
 
-        public float edgeSize = 100.0f; // Taille des bords pour mouvement libre
+        public float edgeSize = 10.0f; // Taille des bords pour mouvement libre
         public float moveSpeed = 100.0f; // Vitesse de la caméra
         private bool isFollowingTank = true;
 
