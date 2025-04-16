@@ -39,15 +39,12 @@ public class TankSelectionCameraManager : MonoBehaviour
     {
         foreach (var tank in allTanksList)
         {
-            Debug.Log("Teste tank");
-
             Tank tankScript = tank.GetComponent<Tank>();
             if (tankScript != null && tankScript.id == id)
             {
                 return tank;
             }
         }
-        Debug.Log("rien trouvé");
         return null;
     }
 }
